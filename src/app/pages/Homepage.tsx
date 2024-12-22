@@ -27,6 +27,10 @@ const Homepage = () => {
             }}
           />
         </div>
+        <h1 className="text-5xl text-center mt-4">Trusted By</h1>
+        <div>
+          
+        </div>
       </div>
     </div>
   );
