@@ -1,6 +1,13 @@
 import Button from "@/components/Button";
+import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 
 const Homepage = () => {
+  const words = [
+    {
+      text: "CONQUER.",
+      className: "text-blue-500 text-9xl dark:text-blue-500",
+    },
+  ];
   return (
     <div className="px-[100px] space-y-96 w-full pt-[50px] h-screen bg-gradient-to-b from-[#0F0420] to-[#3F1186]">
       <div
@@ -11,7 +18,7 @@ const Homepage = () => {
       >
         <h1>CODE.</h1>
         <h1>COMPETE.</h1>
-        <h1>CONQUER.</h1>
+        <h1><TypewriterEffectSmooth words={words} /></h1>
         <div>
           <Button
             name="Get Started"
