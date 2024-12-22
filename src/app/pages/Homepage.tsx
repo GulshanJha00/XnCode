@@ -9,7 +9,7 @@ const Homepage = () => {
     },
   ];
   return (
-    <div className="px-[100px] space-y-96 w-full pt-[50px] h-screen bg-gradient-to-b from-[#0F0420] to-[#3F1186]">
+    <div className="px-[100px] w-screen pt-[50px] h-screen bg-gradient-to-b from-[#0F0420] to-[#3F1186]">
       <div
         className="h-full text-9xl"
         style={{
@@ -28,16 +28,23 @@ const Homepage = () => {
               padding: "20px 140px",
               fontSize: "30px",
               color: "#fff",
+              position: "absolute",
               display: "inline-block",
               textAlign: "center",
               textDecoration: "none",
             }}
           />
         </div>
-        <h1 className="text-5xl text-center mt-4">Trusted By</h1>
+        <h1 className="text-5xl text-center mt-36">Trusted By</h1>
         <div>
           
         </div>
+      </div>
+
+      <div>
+        <h1>Yo</h1>
+        <h1>Yo</h1>
+        <h1>Yo</h1>
       </div>
     </div>
   );

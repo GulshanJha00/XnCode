@@ -14,6 +14,7 @@ const Button = (props: Props) => {
         fontSize: "20px",
         borderRadius: "10px",
         fontFamily: "Itim",
+        cursor: "pointer",
         ...props.style,
       }}
       href={`${props.link}`}>{props.name}</Link>
