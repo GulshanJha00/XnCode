@@ -4,8 +4,9 @@ import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 const Homepage = () => {
   const words = [
     {
-      text: "CONQUER.",
+      text: "COMPETE.",
       className: "text-blue-500 text-9xl dark:text-blue-500",
+      
     },
   ];
   return (
@@ -17,8 +18,10 @@ const Homepage = () => {
         }}
       >
         <h1>CODE.</h1>
-        <h1>COMPETE.</h1>
-        <h1><TypewriterEffectSmooth words={words} /></h1>
+        <h1>CREATE.</h1>
+        <h1>
+          <TypewriterEffectSmooth words={words} />
+        </h1>
         <div>
           <Button
             name="Get Started"
@@ -36,15 +39,7 @@ const Homepage = () => {
           />
         </div>
         <h1 className="text-5xl text-center mt-36">Trusted By</h1>
-        <div>
-          
-        </div>
-      </div>
-
-      <div>
-        <h1>Yo</h1>
-        <h1>Yo</h1>
-        <h1>Yo</h1>
+        <div></div>
       </div>
     </div>
   );
