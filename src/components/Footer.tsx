@@ -65,7 +65,7 @@ const Footer = () => {
             <h3 className="font-semibold text-lg text-center lg:text-start mb-4">
               Social
             </h3>
-            <div className="flex justify-center items-center space-x-4">
+            <div className="flex  space-x-4">
               <Link
                 href="#"
                 className="text-xl text-blue-500 hover:text-blue-600"

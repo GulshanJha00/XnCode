@@ -4,13 +4,13 @@ const Homepage = () => {
   const words = [
     {
       text: "COMPETE.",
-      className: "text-blue-500 text-5xl lg:text-9xl dark:text-blue-500",  
+      className: "text-blue-500 inline text-5xl lg:text-9xl dark:text-blue-500",  
     },
   ];
   return (
     <div className="px-8  lg:block  md:px-[100px] w-screen md:pt-[50px] h-screen bg-gradient-to-b from-[#0F0420] to-[#3F1186]">
       <div
-        className="h-full w-full flex flex-col justify-center md:flex-row text-5xl lg:text-9xl"
+        className="h-full w-full flex flex-col justify-center md:flex-col text-5xl lg:text-9xl"
         style={{
           fontFamily: "Itim",
         }}
