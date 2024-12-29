@@ -8,9 +8,9 @@ const Homepage = () => {
     },
   ];
   return (
-    <div className="px-8 md:px-[100px] w-screen md:pt-[50px] h-screen bg-gradient-to-b from-[#0F0420] to-[#3F1186]">
+    <div className="px-8  lg:block  md:px-[100px] w-screen md:pt-[50px] h-screen bg-gradient-to-b from-[#0F0420] to-[#3F1186]">
       <div
-        className="h-full text-5xl lg:text-9xl"
+        className="h-full w-full flex flex-col justify-center md:flex-row text-5xl lg:text-9xl"
         style={{
           fontFamily: "Itim",
         }}
