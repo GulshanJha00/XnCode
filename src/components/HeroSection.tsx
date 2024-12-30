@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 // import Image from "next/image";
-import featureData from "@/app/data/contentData";
+import featureData from "../app/data/contentData";
 import { Timeline } from "./ui/timeline";
 
 
