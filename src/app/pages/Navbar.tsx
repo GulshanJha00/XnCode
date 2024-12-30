@@ -1,6 +1,6 @@
 import Button from "@/components/Button"
 import "./Navbar.css"
-import Link from "next/line"
+import Link from "next/link"
 const Navbar = () => {
   return (
     <div className='navbg sticky h-20 w-full z-50 top-0 flex justify-between items-center'  
