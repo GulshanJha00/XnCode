@@ -22,7 +22,7 @@ const Homepage = () => {
         </h1>
         <div>
 
-  <Link href='/signup' className="py-1 lg:py-5 absolute px-10 lg:px-36 rounded-2xl text-center font-bold bg-[#00C4E8] text-lg lg:text-3xl">Get Started</Link>
+  <Link href='/home' className="py-1 lg:py-5 absolute px-10 lg:px-36 rounded-2xl text-center font-bold bg-[#00C4E8] text-lg lg:text-3xl">Get Started</Link>
 </div>
         <h1 className="text-2xl md:text-5xl text-center mt-14 lg:mt-36">Trusted By</h1>
         <div></div>
