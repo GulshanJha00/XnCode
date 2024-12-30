@@ -8,107 +8,183 @@ const SignupPage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
+    setIsLoading(true);
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000));
     console.log(username, name, email, password);
+    setIsLoading(false);
   };
 
   return (
-    <div className="h-screen bg-gradient-to-b from-[#0F0420] to-[#3F1186] flex items-center justify-center px-6">
-      <div
-        className="container w-full max-w-5xl bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row transform transition-transform duration-500 hover:scale-105"
-        style={{
-          fontFamily: 'Itim',
-        }}
-      >
+    <div className="min-h-screen bg-0a0a0a flex items-center justify-center p-4 md:p-6">
+      <div className="w-full max-w-5xl bg-white/5 backdrop-blur-lg rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row transform transition-all duration-500 hover:shadow-indigo-500/25">
         {/* Left Section */}
-        <div className="left w-full md:w-1/2 bg-gradient-to-b from-blue-600 to-blue-400 text-white flex flex-col justify-center items-center p-8 lg:p-12">
-          <h1 className="text-5xl font-bold mb-4 animate-fade-in">Join the Community!</h1>
-          <p className="text-lg lg:text-xl text-center mb-8 animate-fade-in">
-            Create an account to start coding, creating, and conquering with us.
-          </p>
-          <Image
-            className="w-[80%] object-cover rounded-xl shadow-lg animate-slide-up"
-            src="/xnc.jpg"
-            alt="Logo"
-            width={500}
-            height={300}
-          />
+        <div className="w-full md:w-1/2 bg-gradient-to-b from-indigo-900 to-purple-900 text-white flex flex-col justify-center items-center p-8 lg:p-12">
+          <div className="space-y-6 animate-fade-in">
+            <h1 className="text-4xl md:text-5xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-200 to-indigo-200">
+              Join the Community!
+            </h1>
+            <p className="text-lg text-center text-gray-300">
+              Create an account to start coding, creating, and conquering with us.
+            </p>
+            {/* <div className="relative w-full aspect-video mt-8">
+              <Image
+                className="object-cover rounded-xl shadow-lg transform transition-transform duration-500 hover:scale-105"
+                src="/xnc.jpg"
+                alt="Logo"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                priority
+              />
+            </div> */}
+          </div>
         </div>
 
         {/* Right Section */}
-        <div className="right w-full md:w-1/2 p-8 lg:p-12 flex flex-col justify-center bg-white">
-          <h2 className="text-3xl font-bold text-center text-blue-600 mb-6 animate-slide-right">
-            Sign Up
-          </h2>
-          <form
-            onSubmit={handleSubmit}
-            className="w-full space-y-6"
-            style={{ animation: 'fade-in 0.5s ease-in' }}
-          >
-            <div className="relative group">
-              <input
-                className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 transition-shadow text-black"
-                required
-                onChange={(e) => setUsername(e.target.value)}
-                value={username}
-                type="text"
-                placeholder="Username"
-              />
-              <span className="absolute left-4 top-4 text-gray-400 text-sm transition-transform group-focus-within:translate-y-[-1rem] group-focus-within:scale-90 group-focus-within:text-blue-500">
-                Username
-              </span>
-            </div>
-            <div className="relative group">
-              <input
-                className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 transition-shadow text-black"
-                required
-                onChange={(e) => setName(e.target.value)}
-                value={name}
-                type="text"
-                placeholder="Name"
-              />
-              <span className="absolute left-4 top-4 text-gray-400 text-sm transition-transform group-focus-within:translate-y-[-1rem] group-focus-within:scale-90 group-focus-within:text-blue-500">
-                Name
-              </span>
-            </div>
-            <div className="relative group">
-              <input
-                className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 transition-shadow text-black"
-                required
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-                type="email"
-                placeholder="Email"
-              />
-              <span className="absolute left-4 top-4 text-gray-400 text-sm transition-transform group-focus-within:translate-y-[-1rem] group-focus-within:scale-90 group-focus-within:text-blue-500">
-                Email
-              </span>
-            </div>
-            <div className="relative group">
-              <input
-                className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 transition-shadow text-black"
-                required
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-                type="password"
-                placeholder="Password"
-              />
-              <span className="absolute left-4 top-4 text-gray-400 text-sm transition-transform group-focus-within:translate-y-[-1rem] group-focus-within:scale-90 group-focus-within:text-blue-500">
-                Password
-              </span>
-            </div>
-            <p className="text-sm text-gray-600 text-center">
-              Already have an account?{' '}
-              <Link href="/login" className="text-blue-600 font-bold hover:underline">
-                Log In
-              </Link>
-            </p>
-            <button className="w-full bg-blue-600 text-white py-3 rounded-lg text-lg font-bold hover:bg-blue-700 transition-transform transform hover:scale-105 shadow-lg">
+        <div className="w-full md:w-1/2 p-8 lg:p-12 flex flex-col justify-center bg-white/10 backdrop-blur-lg">
+          <div className="max-w-md mx-auto w-full space-y-8">
+            <h2 className="text-3xl font-bold text-center text-white mb-8">
               Sign Up
-            </button>
-          </form>
+            </h2>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="space-y-4">
+                <div className="relative group">
+                  <input
+                    className="w-full px-4 py-3 bg-white/10 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-white placeholder-transparent peer"
+                    required
+                    type="text"
+                    id="username"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                  <label
+                    htmlFor="username"
+                    className="absolute left-4 -top-6 text-sm text-gray-400 transition-all 
+                    peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 
+                    peer-placeholder-shown:top-3 peer-focus:-top-6 peer-focus:text-indigo-400 
+                    peer-focus:text-sm"
+                  >
+                    Username
+                  </label>
+                </div>
+
+                <div className="relative group">
+                  <input
+                    className="w-full px-4 py-3 bg-white/10 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-white placeholder-transparent peer"
+                    required
+                    type="text"
+                    id="name"
+                    placeholder="Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                  <label
+                    htmlFor="name"
+                    className="absolute left-4 -top-6 text-sm text-gray-400 transition-all 
+                    peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 
+                    peer-placeholder-shown:top-3 peer-focus:-top-6 peer-focus:text-indigo-400 
+                    peer-focus:text-sm"
+                  >
+                    Name
+                  </label>
+                </div>
+
+                <div className="relative group">
+                  <input
+                    className="w-full px-4 py-3 bg-white/10 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-white placeholder-transparent peer"
+                    required
+                    type="email"
+                    id="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <label
+                    htmlFor="email"
+                    className="absolute left-4 -top-6 text-sm text-gray-400 transition-all 
+                    peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 
+                    peer-placeholder-shown:top-3 peer-focus:-top-6 peer-focus:text-indigo-400 
+                    peer-focus:text-sm"
+                  >
+                    Email
+                  </label>
+                </div>
+
+                <div className="relative group">
+                  <input
+                    className="w-full px-4 py-3 bg-white/10 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-white placeholder-transparent peer"
+                    required
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <label
+                    htmlFor="password"
+                    className="absolute left-4 -top-6 text-sm text-gray-400 transition-all 
+                    peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 
+                    peer-placeholder-shown:top-3 peer-focus:-top-6 peer-focus:text-indigo-400 
+                    peer-focus:text-sm"
+                  >
+                    Password
+                  </label>
+                </div>
+              </div>
+
+              <div className="flex items-center">
+                <input
+                  id="terms"
+                  type="checkbox"
+                  className="w-4 h-4 rounded border-gray-600 text-indigo-600 focus:ring-indigo-500 bg-white/10"
+                  required
+                />
+                <label htmlFor="terms" className="ml-2 text-sm text-gray-300">
+                  I agree to the{' '}
+                  <Link href="/terms" className="text-indigo-400 hover:text-indigo-300">
+                    Terms of Service
+                  </Link>{' '}
+                  and{' '}
+                  <Link href="/privacy" className="text-indigo-400 hover:text-indigo-300">
+                    Privacy Policy
+                  </Link>
+                </label>
+              </div>
+
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full py-3 px-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg 
+                font-medium transition-all duration-200 transform hover:translate-y-[-2px] 
+                focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              >
+                {isLoading ? (
+                  <span className="flex items-center justify-center">
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Creating account...
+                  </span>
+                ) : (
+                  'Create Account'
+                )}
+              </button>
+
+              <p className="text-center text-gray-400">
+                Already have an account?{' '}
+                <Link href="/login" className="text-indigo-400 hover:text-indigo-300 font-medium transition-colors">
+                  Log in here
+                </Link>
+              </p>
+            </form>
+          </div>
         </div>
       </div>
     </div>
