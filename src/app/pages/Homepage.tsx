@@ -1,6 +1,7 @@
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import Link from "next/link";
 const Homepage = () => {
+  /* <TypewriterEffectSmooth words={words} /> */
   const words = [
     {
       text: "COMPETE.",
