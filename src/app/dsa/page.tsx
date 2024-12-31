@@ -30,6 +30,9 @@ const Page = () => {
   };
   return (
     <>
+    <div className="h-12 w-full bg-red-600">
+      <h1>head</h1>
+    </div>
     <div className="h-[755px] w-4 bg-slate-700 absolute left-[627px]"></div>
    
     <div className="flex bg-[#1A1919]    w-full h-max">
