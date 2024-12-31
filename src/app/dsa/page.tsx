@@ -37,7 +37,7 @@ const Page = () => {
       <div className="h-[755px] w-4 bg-[#0F0420] absolute left-[627px]"></div>
 
       <div className="flex bg-[#39324c] w-full h-max">
-        <div className="w-1/2 p-5 h-[755px] text-white border-y-4 border-x-4 border-[#0F0420] bg-[#39324c]">
+        <div className="w-1/2 p-5 h-[755px] text-white border-y-4 border-x-4 border-[#0F0420] bg-[#39324c] overflow-scroll ">
           <h1 className="text-3xl font-bold mb-2">86. Partition List</h1>
           <span className="text-yellow-300 mr-2 p-1 rounded-md bg-gray-400">
             Medium
@@ -48,31 +48,27 @@ const Page = () => {
           <span className="text-yellow-300 mx-2  p-1 rounded-md bg-gray-400">
             Expected Complexity:- o(logn)
           </span>
-          <p className="mt-2">
+          <p className="mt-8 mb-10">
             Given the head of a linked list and a value x, partition it such
             that all nodes less than x come before nodes greater than or equal
-            to x.
-          </p>
-          <br />
-          <p className="mb-4">
-            You should preserve the original relative order of the nodes in each
-            of the two partitions.
+            to x. You should preserve the original relative order of the nodes
+            in each of the two partitions.
           </p>
 
           <hr />
           <br />
 
           <h1 className="font-bold">Example 1:</h1>
-          <p>Input: head = [1,4,3,2,5,2], x = 3</p>
-          <p> Output: [1,2,2,4,3,5]</p>
+          <p className="ml-4">Input: head = [1,4,3,2,5,2], x = 3</p>
+          <p className="ml-4"> Output: [1,2,2,4,3,5]</p>
           <br />
 
           <hr />
           <br />
 
           <h1 className="font-bold">Example 2:</h1>
-          <p>Input: head = [2,1], x = 2</p>
-          <p> Output: [1,2]</p>
+          <p className="ml-4">Input: head = [2,1], x = 2</p>
+          <p className="ml-4"> Output: [1,2]</p>
           <br />
 
           <hr />
@@ -80,9 +76,7 @@ const Page = () => {
           <br />
           <br />
           <h1 className="font-bold">Constraints:</h1>
-          <ul style={{ listStyleType: "circle",
-            marginLeft: "40px"
-           }}>
+          <ul style={{ listStyleType: "circle", marginLeft: "40px" }}>
             <li>The number of nodes in the list is in the range [0, 200].</li>
             <li>{`-100 <= Node.val <= 100`}</li>
             <li>{`-200 <= x <= 200`}</li>
@@ -129,7 +123,7 @@ const Page = () => {
                 <h1>Run</h1>
               </div>
               <div
-                className="flex cursor-pointer justify-center items-center p-3 py-2 gap-1 rounded-lg bg-[#1cbd1c]"
+                className="flex cursor-pointer justify-center items-center p-2 py-1 gap-1 rounded-lg bg-[#1cbd1c]"
                 onClick={handleGoBack}
               >
                 <RxUpload className="h-5 w-5 font-bold" />
