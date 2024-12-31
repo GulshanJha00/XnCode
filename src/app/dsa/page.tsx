@@ -30,15 +30,16 @@ const Page = () => {
   };
   return (
     <>
-    <div className="h-[755px] w-4 bg-blue-700 absolute left-[627px]"></div>
+    <div className="h-[755px] w-4 bg-slate-700 absolute left-[627px]"></div>
    
-    <div className="flex bg-[#1A1919] w-full h-max">
-        <div className="w-1/2 h-[600px] bg-white">
-          <h1 className="text-black">Yo</h1>
+    <div className="flex bg-[#1A1919]    w-full h-max">
+        <div className="w-1/2 p-5 h-[755px] text-white border-y-8 border-x-4 border-slate-700 bg-[#1E1E1E]">
+          <h1 className="text-3xl font-bold">86. Partition List
+          </h1>
         </div>
 
       <div className="">
-          <div className="w-full bg-[#1A1919] border-x-4 border-b-4 border-t-8 border-blue-700 flex justify-between items-center h-20 px-4 py-4">
+          <div className="w-full bg-[#1A1919] border-x-4 border-b-4 border-t-8 border-slate-700 flex justify-between items-center h-20 px-4 py-4">
               <div
                 className="flex cursor-pointer justify-center items-center p-3 py-2 gap-1 rounded-lg bg-[#745cee]"
                 onClick={handleGoBack}
@@ -98,7 +99,7 @@ const Page = () => {
           defaultLanguage="cpp"
           defaultValue="//XnCode Is Ready To Serve You Master"
           theme="vs-dark"
-          className=" pt-3 pb-3 pl-4 pr-4 border-l-8 border-b-8 border-x-4 border-blue-700 shadow-lg mx-auto"
+          className=" pt-3 pb-3 pl-4 pr-4 border-l-8 border-b-8 border-x-4 border-slate-700 shadow-lg mx-auto"
           options={{
             fontSize: 16, // Adjust font size for better readability
             fontFamily: "'Source Code Pro', monospace",
@@ -111,7 +112,7 @@ const Page = () => {
             smoothScrolling: true, 
           }}
         />
-        <div className="pl-4 h-64 border-b-8 border-x-4 border-blue-700  ">
+        <div className="pl-4 h-64 border-b-8 border-x-4 border-slate-700  ">
           <h1>Test Cases</h1>
         </div>
 
