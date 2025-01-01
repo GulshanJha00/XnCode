@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const SignupPage = () => {
   const [username, setUsername] = useState('');
@@ -8,13 +9,45 @@ const SignupPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     setIsLoading(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    console.log(username, name, email, password);
+  
+    // Construct the payload for the API
+    const data = {
+      username,
+      name,
+      email,
+      password,
+    };
+  
+    try {
+      // API call
+      const response = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+  
+      const result = await response.json();
+  
+      if (!response.ok) {
+        console.error('Error:', result);
+        alert('Error creating account. Please try again.');
+
+      } else {
+        console.log('Success:', result);
+        router.push('/home')
+      }
+    } catch (error) {
+      console.error('Network Error:', error);
+      alert('Something went wrong. Please try again later.');
+    }
+  
     setIsLoading(false);
   };
 

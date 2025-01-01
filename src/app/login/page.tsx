@@ -1,20 +1,55 @@
 'use client';
 import React, { useState } from 'react';
 import Link from 'next/link';
-// import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
+  
+
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     setIsLoading(true);
+
+    const data = {
+  
+      email,
+      password,
+    };
     // Simulate API call
-    
-    console.log(email, password);
+    try {
+      // API call
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+  
+      const result = await response.json();
+  
+      if (!response.ok) {
+        console.error('Error:', result);
+        alert('Error creating account. Please try again.');
+
+      } else {
+        console.log('Success:', result);
+        
+        router.push('/home')
+      }
+    } catch (error) {
+      console.error('Network Error:', error);
+      alert('Something went wrong. Please try again later.');
+    }
+  
     setIsLoading(false);
+  
+    
   };
 
   return (
