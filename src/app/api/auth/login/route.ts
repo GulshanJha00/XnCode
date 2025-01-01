@@ -27,6 +27,7 @@ export async function POST(req: NextRequest) {
         }
 
         
+        
         if (user.password !== password) {
             return NextResponse.json(
                 { error: "Invalid credentials" },
@@ -44,13 +45,14 @@ export async function POST(req: NextRequest) {
             { expiresIn: "15d" }
         );
 
-        return NextResponse.json(
-            {
-                message: "Login successful",
-                token,
-            },
-            { status: 200 }
-        );
+        const response = NextResponse.json({ message: "Login successful" });
+        response.cookies.set("token", token, {
+            httpOnly: true,
+            maxAge: 60 * 60 * 24 * 15,
+        });
+
+        return response;
+       
     } catch (error) {
         console.error("Error in login route:", error);
         return NextResponse.json(

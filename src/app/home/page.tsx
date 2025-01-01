@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import ListCard from "@/components/ListCard";
 import Link from "next/link";
+// import LogoutButton from "@/components/LogoutButton";
 
 const Home = () => {
   const [isCreateModelShow, setIsCreateModelShow] = useState(false);
@@ -11,9 +12,9 @@ const Home = () => {
       <div className="flex items-center justify-between px-[100px] my-[40px]">
         <h2 className="text-2xl">Hi, Prasoon 👽</h2>
         <div className="flex items-center gap-1">
-          <div className="inputBox w-[400px]">
+          {/* <div className="inputBox w-[400px]">
             <input type="text" placeholder="Search here..." />
-          </div>
+          </div> */}
           <button
             onClick={() => setIsCreateModelShow(true)}
             className="bg-gradient-to-b from-indigo-900 to-purple-900 w-14 h-10 text-white py-2 px-4 rounded-sm mb-3 text-[10px] text-xl"
@@ -34,6 +35,10 @@ const Home = () => {
           </Link>
         </div>
       </div>
+
+      {/* <div className="flex items-center justify-end px-[100px] my-[40px]">
+        <LogoutButton />
+      </div> */}
 
       {isCreateModelShow ? (
         <div className="createModelCon fixed top-0 left-0 bottom-0 w-screen h-screen bg-[rgb(0,0,0,0.1)] flex items-center justify-center">
