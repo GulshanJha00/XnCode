@@ -39,6 +39,9 @@ const LoginPage = () => {
 
       } else {
         console.log('Success:', result);
+        localStorage.setItem('token', result.token);
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userId', JSON.stringify(result.userId));
         
         router.push('/home')
       }
