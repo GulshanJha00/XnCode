@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
             { expiresIn: "15d" }
         );
 
-        const response = NextResponse.json({ message: "Login successful" });
+        const response = NextResponse.json({ message: "Login successful", token: token, userId: user._id });
         response.cookies.set("token", token, {
             httpOnly: true,
             maxAge: 60 * 60 * 24 * 15,
