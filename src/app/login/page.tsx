@@ -2,58 +2,59 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useAuthStore } from "@/store/authStore";
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-    const router = useRouter();
+  const [error, setError] = useState('');
   
+  const router = useRouter();
+  const { setLoggedIn } = useAuthStore();
 
+ 
+const handleSubmit = async (e: { preventDefault: () => void }) => {
+  e.preventDefault();
+  setIsLoading(true);
+  setError('');
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    const data = {
-  
-      email,
-      password,
-    };
-    // Simulate API call
-    try {
-      // API call
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-  
-      const result = await response.json();
-  
-      if (!response.ok) {
-        console.error('Error:', result);
-        alert('Error creating account. Please try again.');
-
-      } else {
-        console.log('Success:', result);
-        localStorage.setItem('token', result.token);
-        localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('userId', JSON.stringify(result.userId));
-        
-        router.push('/home')
-      }
-    } catch (error) {
-      console.error('Network Error:', error);
-      alert('Something went wrong. Please try again later.');
-    }
-  
-    setIsLoading(false);
-  
-    
+  const data = {
+    email,
+    password,
   };
+
+  try {
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      setError(result.message || 'Error logging in. Please try again.');
+    } else {
+      // Update Zustand store
+      setLoggedIn(true);
+
+      // Store auth data
+      localStorage.setItem('token', result.token);
+
+      // Redirect to home page
+      router.push('/home');
+    }
+  } catch (err) {
+    console.error('Network error:', err); // Log the error
+    setError('Network error. Please check your connection and try again.');
+  } finally {
+    setIsLoading(false);
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-0a0a0a flex items-center justify-center p-4 md:p-6">
@@ -67,16 +68,6 @@ const LoginPage = () => {
             <p className="text-lg text-center text-gray-300">
               Log in to access your account and continue your journey with us.
             </p>
-            {/* <div className="relative w-full mt-8">
-              <Image
-                className="object-cover rounded-xl shadow-lg transform transition-transform duration-500 hover:scale-105"
-                src="/xnc.jpg"
-                alt="Logo"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                priority
-              />
-            </div> */}
           </div>
         </div>
 
@@ -86,6 +77,13 @@ const LoginPage = () => {
             <h2 className="text-3xl font-bold text-center text-white mb-8">
               Log In
             </h2>
+            
+            {error && (
+              <div className="bg-red-500/10 border border-red-500 text-red-400 px-4 py-3 rounded-lg">
+                {error}
+              </div>
+            )}
+            
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-4">
                 <div className="relative group">
@@ -133,10 +131,16 @@ const LoginPage = () => {
 
               <div className="flex items-center justify-between text-sm">
                 <label className="flex items-center text-gray-300">
-                  <input type="checkbox" className="w-4 h-4 rounded border-gray-600 text-indigo-600 focus:ring-indigo-500 bg-white/10" />
+                  <input 
+                    type="checkbox" 
+                    className="w-4 h-4 rounded border-gray-600 text-indigo-600 focus:ring-indigo-500 bg-white/10" 
+                  />
                   <span className="ml-2">Remember me</span>
                 </label>
-                <Link href="/#" className="text-indigo-400 hover:text-indigo-300 transition-colors">
+                <Link 
+                  href="/forgot-password" 
+                  className="text-indigo-400 hover:text-indigo-300 transition-colors"
+                >
                   Forgot password?
                 </Link>
               </div>
@@ -164,7 +168,10 @@ const LoginPage = () => {
 
               <p className="text-center text-gray-400">
                 Don&apos;t have an account?{' '}
-                <Link href="/signup" className="text-indigo-400 hover:text-indigo-300 font-medium transition-colors">
+                <Link 
+                  href="/signup" 
+                  className="text-indigo-400 hover:text-indigo-300 font-medium transition-colors"
+                >
                   Sign up here
                 </Link>
               </p>

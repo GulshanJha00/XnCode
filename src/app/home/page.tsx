@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import UserDetails from "@/components/UserDetails";
 import ListCard from "@/components/ListCard";
 import Link from "next/link";
-import Logout from "@/components/Logout";
+
 
 const Home = () => {
   const [isCreateModelShow, setIsCreateModelShow] = useState(false);
@@ -34,9 +34,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="flex items-center justify-end absolute bottom-4 right-4">
-        <Logout />
-      </div>
+      
 
       {isCreateModelShow && (
         <div className="createModelCon fixed top-0 left-0 bottom-0 w-screen h-screen bg-[rgba(0,0,0,0.1)] flex items-center justify-center">

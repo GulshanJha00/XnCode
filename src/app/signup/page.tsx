@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useAuthStore } from "@/store/authStore";
 
 const SignupPage = () => {
   const [username, setUsername] = useState('');
@@ -9,13 +10,16 @@ const SignupPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  
   const router = useRouter();
+  const { setLoggedIn } = useAuthStore();
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     setIsLoading(true);
+    setError('');
   
-    // Construct the payload for the API
     const data = {
       username,
       name,
@@ -24,7 +28,6 @@ const SignupPage = () => {
     };
   
     try {
-      // API call
       const response = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: {
@@ -36,19 +39,23 @@ const SignupPage = () => {
       const result = await response.json();
   
       if (!response.ok) {
-        console.error('Error:', result);
-        alert('Error creating account. Please try again.');
-
+        setError(result.message || 'Error creating account. Please try again.');
       } else {
-        console.log('Success:', result);
-        router.push('/home')
+        // Set auth state using Zustand store
+        setLoggedIn(true, result.userId);
+        
+        // Store the token
+        localStorage.setItem('token', result.token);
+        
+        // Redirect to home page
+        router.push('/home');
       }
     } catch (error) {
+      setError('Network error. Please check your connection and try again.');
       console.error('Network Error:', error);
-      alert('Something went wrong. Please try again later.');
+    } finally {
+      setIsLoading(false);
     }
-  
-    setIsLoading(false);
   };
 
   return (
@@ -63,16 +70,6 @@ const SignupPage = () => {
             <p className="text-lg text-center text-gray-300">
               Create an account to start coding, creating, and conquering with us.
             </p>
-            {/* <div className="relative w-full aspect-video mt-8">
-              <Image
-                className="object-cover rounded-xl shadow-lg transform transition-transform duration-500 hover:scale-105"
-                src="/xnc.jpg"
-                alt="Logo"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                priority
-              />
-            </div> */}
           </div>
         </div>
 
@@ -82,6 +79,13 @@ const SignupPage = () => {
             <h2 className="text-3xl font-bold text-center text-white mb-8">
               Sign Up
             </h2>
+
+            {error && (
+              <div className="bg-red-500/10 border border-red-500 text-red-400 px-4 py-3 rounded-lg">
+                {error}
+              </div>
+            )}
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-4">
                 <div className="relative group">
