@@ -6,6 +6,9 @@ import { useRouter } from "next/navigation";
 import { LuAlarmClock } from "react-icons/lu";
 import { IoArrowBack } from "react-icons/io5";
 import { RxUpload } from "react-icons/rx";
+import { useAuthStore } from "@/store/authStore";
+import ProtectedRoute from "@/components/ProtectedRoute";
+
 
 const Page = () => {
   const [time, setTime] = useState(20000);
@@ -18,6 +21,9 @@ const Page = () => {
   }, [time]);
 
   const router = useRouter();
+  const isLoggedIn = useAuthStore(state => state.isLoggedIn);
+
+  
 
   const handleGoBack = () => {
     router.back();
@@ -30,6 +36,7 @@ const Page = () => {
   };
 
   return (
+    <ProtectedRoute>
     <>
       <div className="h-12 w-full bg-red-600 flex justify-center items-center">
         <h1>Yaha kya dalna hai pata nahi abhi par dekhenge </h1>
@@ -180,6 +187,7 @@ const Page = () => {
         </div>
       </div>
     </>
+    </ProtectedRoute>
   );
 };
 

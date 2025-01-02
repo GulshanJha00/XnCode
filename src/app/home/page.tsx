@@ -1,15 +1,28 @@
-// pages/home.tsx or wherever your homepage is
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import UserDetails from "@/components/UserDetails";
 import ListCard from "@/components/ListCard";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuthStore } from "@/store/authStore";
+import ProtectedRoute from "@/components/ProtectedRoute";
+
 
 
 const Home = () => {
   const [isCreateModelShow, setIsCreateModelShow] = useState(false);
+  const isLoggedIn = useAuthStore(state => state.isLoggedIn);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.push('/login');
+    }
+  }, [isLoggedIn]);
+
 
   return (
+    <ProtectedRoute>
     <>
       <div className="flex items-center justify-between px-[100px] my-[40px]">
         <UserDetails />
@@ -60,6 +73,7 @@ const Home = () => {
         </div>
       )}
     </>
+    </ProtectedRoute>
   );
 };
 
