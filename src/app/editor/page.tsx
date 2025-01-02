@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Editor from "@monaco-editor/react";
 import { FaExpandAlt } from "react-icons/fa";
 import { MdLightMode } from "react-icons/md";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 const MyEditor = () => {
   const [tab, setTab] = useState("html");
@@ -41,6 +42,7 @@ const MyEditor = () => {
   }, [htmlCode, cssCode, jsCode]); // Dependencies ensure this runs when code changes
 
   return (
+    <ProtectedRoute>
     <div className="flex">
       {/* Editor Section */}
       <div
@@ -133,6 +135,7 @@ const MyEditor = () => {
         ></iframe>
       )}
     </div>
+    </ProtectedRoute>
   );
 };
 
