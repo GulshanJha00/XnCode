@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { LuAlarmClock } from "react-icons/lu";
 import { IoArrowBack } from "react-icons/io5";
 import { RxUpload } from "react-icons/rx";
-import { useAuthStore } from "@/store/authStore";
+
 import ProtectedRoute from "@/components/ProtectedRoute";
 
 
@@ -21,7 +21,7 @@ const Page = () => {
   }, [time]);
 
   const router = useRouter();
-  const isLoggedIn = useAuthStore(state => state.isLoggedIn);
+ 
 
   
 
