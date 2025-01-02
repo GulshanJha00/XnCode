@@ -34,7 +34,6 @@ const Page = () => {
       <div className="h-12 w-full bg-red-600 flex justify-center items-center">
         <h1>Yaha kya dalna hai pata nahi abhi par dekhenge </h1>
       </div>
-      <div className="h-[755px] w-4 bg-[#0F0420] absolute left-[627px]"></div>
 
       <div className="flex bg-[#39324c] w-full h-max">
         <div className="w-1/2 p-5 h-[755px] text-white border-y-4 border-x-4 border-[#0F0420] bg-[#39324c] overflow-scroll ">
@@ -149,6 +148,8 @@ const Page = () => {
                 <option value="5">Python</option>
               </select>
             </div>
+
+            
           </div>
 
           <Editor
