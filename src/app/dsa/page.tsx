@@ -6,8 +6,10 @@ import { IoArrowBack } from "react-icons/io5";
 import { LuAlarmClock } from "react-icons/lu";
 import { RxUpload } from "react-icons/rx";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import questions from "../data/questions";
 
 const Page = () => {
+  const quesData = questions[0];
   const [time, setTime] = useState(20000);
   const [selectedTestCase, setSelectedTestCase] = useState<{
     input: string;
@@ -53,9 +55,9 @@ const Page = () => {
         <div className="flex flex-col md:flex-row">
           {/* Problem Statement Section */}
           <aside className="w-full md:w-1/2 bg-gray-800 p-6 overflow-y-auto border-r border-gray-700">
-            <h2 className="text-3xl font-extrabold mb-4">86. Partition List</h2>
+            <h2 className="text-3xl font-extrabold mb-4">{`${quesData.title}`}</h2>
             <div className="flex items-center gap-3 mb-6">
-              <span className="bg-yellow-300 text-black px-3 py-1 rounded-full">Medium</span>
+              <span className="bg-yellow-300 text-black px-3 py-1 rounded-full">{`${quesData.difficulty}`}</span>
               <span className="bg-gray-600 text-yellow-300 px-3 py-1 rounded-full">
                 Avg Time: 7 Min
               </span>
