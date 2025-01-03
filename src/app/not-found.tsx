@@ -8,7 +8,7 @@ const PageNotFound = () => {
         <h1 className="text-5xl font-bold animate-pulse text-yellow-400">Oops! 404</h1>
         
         {/* Sub Text */}
-        <p className="text-lg font-mono text-gray-300 animate-pulse">The page you're looking for is not here.</p>
+        <p className="text-lg font-mono text-gray-300 animate-pulse">The page you&apos;re looking for is not here.</p>
         
         {/* Icon and Message */}
         <div className="flex justify-center items-center space-x-4">
