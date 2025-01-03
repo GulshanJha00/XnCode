@@ -5,7 +5,7 @@ import { FaCode, FaStopwatch, FaChartLine, FaProjectDiagram, FaLightbulb, FaUser
 const Home = () => {
   return (
     <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center p-4 md:p-6">
-      <div className="w-full max-w-6xl bg-gray-800/60 backdrop-blur-lg rounded-xl shadow-xl overflow-hidden">
+      <div className="w-full max-w-6xl bg-gray-600 backdrop-blur-lg rounded-xl shadow-xl overflow-hidden">
         <div className="w-full p-8 lg:p-12 space-y-8">
           <div className="text-center space-y-4">
             <h1 className="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">
