@@ -18,6 +18,10 @@ const questions = [
       {
         input: "head = [2,1], x = 2",
         output: "[1,2]"
+      },
+      {
+        input: "head = [5,1,7,3], x = 4",
+        output: "[1,3,5,7]"
       }
     ],
     testCases: [

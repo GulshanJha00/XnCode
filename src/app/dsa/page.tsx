@@ -61,27 +61,24 @@ const Page = () => {
                 Avg Time: {`${quesData.avgTime}`}
               </span>
               <span className="bg-gray-600 text-yellow-300 px-3 py-1 rounded-full">
-                Expected Complexity: O(logn)
+                Expected Complexity: {`${quesData.expectedComplexity}`}
               </span>
             </div>
 
             <p className="mb-6">
-              Given the head of a linked list and a value x, partition it such
-              that all nodes less than x come before nodes greater than or equal
-              to x. You should preserve the original relative order of the nodes
-              in each of the two partitions.
+              {`${quesData.description}`}
             </p>
 
             <div className="mb-6">
               <h3 className="font-semibold">Example 1:</h3>
-              <p>Input: head = [1,4,3,2,5,2], x = 3</p>
-              <p>Output: [1,2,2,4,3,5]</p>
+              <p>Input: {`${quesData.examples[0].input}`}</p>
+              <p>Output: {`${quesData.examples[0].output}`}</p>
             </div>
 
             <div className="mb-6">
               <h3 className="font-semibold">Example 2:</h3>
-              <p>Input: head = [2,1], x = 2</p>
-              <p>Output: [1,2]</p>
+              <p>Input: {`${quesData.examples[1].input}`}</p>
+              <p>Output: {`${quesData.examples[1].output}`}</p>
             </div>
 
             <h3 className="font-semibold mb-3">Constraints:</h3>
