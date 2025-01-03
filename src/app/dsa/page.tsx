@@ -10,16 +10,18 @@ import questions from "../data/questions";
 const Page = () => {
   const quesData = questions[0];
   const [time, setTime] = useState(20000);
+
+  const testCases = [
+    { input: quesData.testCases[0]?.input, output: quesData.testCases[0]?.output },
+    quesData.testCases[1] ? { input: quesData.testCases[1]?.input, output: quesData.testCases[1]?.output } : null,
+    quesData.testCases[2] ? { input: quesData.testCases[2]?.input, output: quesData.testCases[2]?.output } : null
+  ].filter(Boolean); // Filter out null values
+
+  // Default to the first test case or null if no valid test cases exist
   const [selectedTestCase, setSelectedTestCase] = useState<{
     input: string;
     output: string;
-  } | null>(null);
-
-  const testCases = [
-    { input: "head = [1,4,3,2,5,2], x = 3", output: "[1,2,2,4,3,5]" },
-    { input: "head = [2,1], x = 2", output: "[1,2]" },
-    { input: "head = [5,1,7,3], x = 4", output: "[1,3,5,7]" },
-  ];
+  } | null>(testCases.length > 0 ? testCases[0] : null); 
 
   useEffect(() => {
     if (time <= 0) return;
@@ -33,10 +35,6 @@ const Page = () => {
     const minutes = Math.floor(timeInMs / 60000);
     const seconds = Math.floor((timeInMs % 60000) / 1000);
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-  };
-
-  const clearTestCase = () => {
-    setSelectedTestCase(null);
   };
 
   return (
@@ -58,7 +56,18 @@ const Page = () => {
 
         {/* Center: Timer */}
         <div className="text-2xl font-mono font-bold text-purple-500">
-          01:30
+          <div className="flex items-center gap-2 bg-gray-700 px-4 py-2 rounded-lg">
+            <LuAlarmClock className="text-yellow-400" />
+            <span
+              className={`font-bold ${
+                time <= 10000
+                  ? "text-red-500 animate-pulse"
+                  : "text-green-400"
+              }`}
+            >
+              {formatTime(time)}
+            </span>
+          </div>
         </div>
 
         {/* Right side: Opponent info */}
@@ -69,9 +78,7 @@ const Page = () => {
             className="w-10 h-10 rounded-full"
           />
           <div className="flex flex-col text-right">
-            <span className="text-xl font-mono font-semibold">
-              OpponentName
-            </span>
+            <span className="text-xl font-mono font-semibold">OpponentName</span>
             <span className="text-sm text-gray-400">Rating: 110</span>
           </div>
         </div>
@@ -99,17 +106,21 @@ const Page = () => {
             <p>Input: {`${quesData.examples[0].input}`}</p>
             <p>Output: {`${quesData.examples[0].output}`}</p>
           </div>
+          {quesData.examples[1]? <div className="mb-6">
+          <h3 className="font-semibold">Example 2:</h3>
+          <p>Input: {`${quesData.examples[1].input}`}</p>
+          <p>Output: {`${quesData.examples[1].output}`}</p>
+        </div>
+          
+        : " "}
 
-          <div className="mb-6">
-            <h3 className="font-semibold">Example 2:</h3>
-            <p>Input: {`${quesData.examples[1].input}`}</p>
-            <p>Output: {`${quesData.examples[1].output}`}</p>
-          </div>
-          <div className="mb-6">
+        {quesData.examples[2]?   <div className="mb-6">
             <h3 className="font-semibold">Example 3:</h3>
             <p>Input: {`${quesData.examples[2].input}`}</p>
             <p>Output: {`${quesData.examples[2].output}`}</p>
-          </div>
+          </div>  : " "}
+
+        
 
           <h3 className="font-semibold mb-3">Constraints:</h3>
           <ul className="list-disc list-inside text-gray-300">
@@ -128,19 +139,6 @@ const Page = () => {
             </button>
 
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 bg-gray-700 px-4 py-2 rounded-lg">
-                <LuAlarmClock className="text-yellow-400" />
-                <span
-                  className={`font-bold ${
-                    time <= 10000
-                      ? "text-red-500 animate-pulse"
-                      : "text-green-400"
-                  }`}
-                >
-                  {formatTime(time)}
-                </span>
-              </div>
-
               <button className="flex items-center gap-2 px-4 py-2 bg-green-600 rounded-lg hover:bg-green-700 transition">
                 <FaPlay /> Run
               </button>
@@ -191,7 +189,7 @@ const Page = () => {
                 </button>
               ))}
             </div>
-            {selectedTestCase ? (
+            {selectedTestCase && (
               <div className="p-4 bg-gray-700 rounded-lg">
                 <p>
                   <strong>Input:</strong> {selectedTestCase.input}
@@ -199,17 +197,7 @@ const Page = () => {
                 <p>
                   <strong>Output:</strong> {selectedTestCase.output}
                 </p>
-                <button
-                  onClick={clearTestCase}
-                  className="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
-                >
-                  Clear
-                </button>
               </div>
-            ) : (
-              <p className="text-gray-400">
-                Select a test case to view details.
-              </p>
             )}
           </div>
         </main>
