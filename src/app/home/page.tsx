@@ -11,7 +11,7 @@ const Home = () => {
               Code Like a Pro
             </h1>
             <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-  What’s your next move? <span className="text-blue-400 font-bold">Code smarter</span>,  
+  What&apos;s your next move? <span className="text-blue-400 font-bold">Code smarter</span>,  
   <span className="text-green-400 font-bold">build faster</span>, and  
   <span className="text-purple-400 font-bold">achieve greatness</span> with our tailored learning modes.
 </p>
