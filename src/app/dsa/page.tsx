@@ -1,24 +1,34 @@
+'use client'
 import React, { useEffect, useState } from "react";
 import Editor from "@monaco-editor/react";
 import { FaPlay } from "react-icons/fa";
 import { IoArrowBack } from "react-icons/io5";
 import { LuAlarmClock } from "react-icons/lu";
 import { RxUpload } from "react-icons/rx";
-import questions from "../data/questions";
+import questions from "../data/questions"; // Make sure the questions data is typed correctly
 
-interface questions{
-  title : string,
-  testCases: string,
-  timeInMs: string,
-  difficulty: string,
-  avgTime: string,
-  expectedComplexity: string,
-  examples: string,
-  constraints: string,
+// Define your Question and TestCase types
+interface TestCase {
+  input: string;
+  output: string;
 }
+
+interface Question {
+  title: string;
+  testCases: TestCase[];
+  timeInMs?: number;
+  difficulty: string;
+  avgTime: string;
+  expectedComplexity: string;
+  description: string; // Add description field
+  examples: { input: string; output: string }[]; // Corrected examples type
+  constraints: string[]; // Constraints type
+}
+
 const Page = () => {
-  const [quesData, setQuesData] = useState(null);
+  const [quesData, setQuesData] = useState<Question | null>(null); // Type state as Question | null
   const [time, setTime] = useState(20000);
+  
 
   // Set the random question once on component mount
   useEffect(() => {
@@ -27,18 +37,20 @@ const Page = () => {
     setQuesData(questions[i]);
   }, []); // Empty dependency array to ensure this effect runs only once when the component mounts
 
+  if (!quesData) return <div>Loading...</div>; // Display a loading message until quesData is available
+
   const testCases = [
     {
-      input: quesData?.testCases[0]?.input,
-      output: quesData?.testCases[0]?.output,
+      input: quesData.testCases[0]?.input,
+      output: quesData.testCases[0]?.output,
     },
-    quesData?.testCases[1]
+    quesData.testCases[1]
       ? {
           input: quesData.testCases[1]?.input,
           output: quesData.testCases[1]?.output,
         }
       : null,
-    quesData?.testCases[2]
+    quesData.testCases[2]
       ? {
           input: quesData.testCases[2]?.input,
           output: quesData.testCases[2]?.output,
@@ -46,7 +58,6 @@ const Page = () => {
       : null,
   ].filter(Boolean); // Filter out null values
 
-  // Default to the first test case or null if no valid test cases exist
   const [selectedTestCase, setSelectedTestCase] = useState(
     testCases.length > 0 ? testCases[0] : null
   );
@@ -59,11 +70,13 @@ const Page = () => {
     return () => clearTimeout(timer);
   }, [time]);
 
-  const formatTime = (timeInMs) => {
+  const formatTime = (timeInMs: number) => {
     const minutes = Math.floor(timeInMs / 60000);
     const seconds = Math.floor((timeInMs % 60000) / 1000);
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
+
+
 
   if (!quesData) return <div>Loading...</div>; // Display a loading message until quesData is available
 
