@@ -648,7 +648,7 @@ const questions = [
   },
 
   {
-    title: "Implement a Stack using Linked List",
+    title: "1. Implement a Stack using Linked List",
     description:
       "In this problem, you need to implement a stack data structure using a linked list. The key operations are push (insert element) and pop (remove element).",
     difficulty: "Medium",
@@ -679,7 +679,7 @@ const questions = [
     ],
   },
   {
-    title: "Evaluate the expression using a stack",
+    title: "3. Evaluate the expression using a stack",
     description:
       "This problem involves evaluating a mathematical expression. You can use a stack to manage operands and operators while calculating the result.",
     difficulty: "Medium",
@@ -701,7 +701,7 @@ const questions = [
     ],
   },
   {
-    title: "Check if parentheses are balanced using a stack",
+    title: "20. Check if parentheses are balanced using a stack",
     description:
       "In this problem, you need to check if a given string with parentheses is balanced (every opening parenthesis has a corresponding closing one).",
     difficulty: "Easy",
@@ -722,7 +722,7 @@ const questions = [
 
   // Binary Tree Questions
   {
-    title: "Find the height of a binary tree",
+    title: "104. Find the height of a binary tree",
     description:
       "The height of a binary tree is the length of the longest path from the root node to a leaf node. Write a function to calculate this height.",
     difficulty: "Easy",
@@ -741,7 +741,7 @@ const questions = [
     ],
   },
   {
-    title: "Implement level-order traversal of a binary tree",
+    title: "102. Implement level-order traversal of a binary tree",
     description:
       "Level-order traversal is a breadth-first search (BFS) traversal of the tree. Visit all nodes at each level from top to bottom.",
     difficulty: "Medium",
@@ -772,7 +772,7 @@ const questions = [
     ],
   },
   {
-    title: "Check if a binary tree is a balanced binary tree",
+    title: "110. Check if a binary tree is a balanced binary tree",
     description:
       "A binary tree is balanced if the depth of the two subtrees of every node never differs by more than 1. Check whether a binary tree is balanced.",
     difficulty: "Medium",
@@ -799,7 +799,7 @@ const questions = [
 
   // Queue Questions
   {
-    title: "Implement a queue using two stacks",
+    title: "4. Implement a queue using two stacks",
     description:
       "In this problem, implement a queue using two stacks. You need to handle enqueue and dequeue operations.",
     difficulty: "Medium",
@@ -836,7 +836,7 @@ const questions = [
     ],
   },
   {
-    title: "Design a circular queue",
+    title: "622. Design a circular queue",
     description:
       "A circular queue is a queue where the last position is connected to the first position. Implement its basic operations.",
     difficulty: "Medium",
@@ -875,7 +875,7 @@ const questions = [
     ],
   },
   {
-    title: "Implement a priority queue",
+    title: "6. Implement a priority queue",
     description:
       "In a priority queue, each element is associated with a priority. Implement the priority queue with enqueue, dequeue, and peek operations.",
     difficulty: "Medium",
@@ -920,7 +920,7 @@ const questions = [
 
   // Dynamic Programming Questions
   {
-    title: "Find the longest increasing subsequence in an array",
+    title: "300. Longest increasing subsequence in an array",
     description:
       "Find the longest increasing subsequence (LIS) in a given array of integers. The LIS is a subsequence where each element is greater than the previous one.",
     difficulty: "Hard",
@@ -946,7 +946,7 @@ const questions = [
   },
   {
     title:
-      "Given a set of weights and values, find the maximum value you can carry in a knapsack of limited capacity",
+      "5. Knapsack with large Weights",
     description:
       "This is the classic 0/1 Knapsack problem. Given a set of weights and corresponding values, determine the maximum value that can be carried in a knapsack with a given weight capacity.",
     difficulty: "Hard",

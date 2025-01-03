@@ -2,7 +2,7 @@ import React from 'react';
 
 const LoadingScreen = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-900 to-purple-900">
+    <div className="flex items-center justify-center min-h-screen bg-gray-600">
       <div className="text-center text-white p-8 bg-black bg-opacity-50 backdrop-blur-lg rounded-lg shadow-xl space-y-6">
         {/* Loading Title */}
         <h1 className="text-4xl font-semibold animate-pulse text-yellow-300">Compiling Your Code...</h1>
