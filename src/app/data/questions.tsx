@@ -595,6 +595,25 @@ const questions = [
       { input: "head = [1,2,2,1]", output: "True" },
       { input: "head = [1,2]", output: "False" }
     ]
+  },
+  {
+    title: "86. Partition List",
+    description: "Given the head of a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.",
+    difficulty: "Medium",
+    avgTime: "7 Min",
+    expectedComplexity: "O(n)",
+    constraints: [
+      "The number of nodes in the list is in the range [0, 200].",
+      "0 <= Node.val <= 50"
+    ],
+    examples: [
+      { input: "head = [1,4,3,2,5,2], x = 3", output: "[1,2,2,4,3,5]" },
+      { input: "head = [2,1], x = 2", output: "[1,2]" }
+    ],
+    testCases: [
+      { input: "head = [1,4,3,2,5,2], x = 3", output: "[1,2,2,4,3,5]" },
+      { input: "head = [2,1], x = 2", output: "[1,2]" }
+    ]
   }
 ];
 
