@@ -7,7 +7,7 @@ import { LuAlarmClock } from "react-icons/lu";
 import { RxUpload } from "react-icons/rx";
 import questions from "../data/questions"; // Make sure the questions data is typed correctly
 import LoadingScreen from "../loading";
-
+import Image from "next/image";
 // Define your Question and TestCase types
 interface TestCase {
   input: string;
@@ -68,10 +68,13 @@ const Page = () => {
       <header className="h-16 flex justify-between items-center px-6 bg-black text-white border-b border-gray-700">
         {/* Left side: Your info */}
         <div className="flex items-center space-x-4">
-          <img
-            src="your-avatar.jpg"
+          <Image
+            src="https://imgs.search.brave.com/jo6j5Rz8u0Oh_BYyoKpg8SD6n4bD4JXaSupFflorA-E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hbmlt/ZW1vdGl2YXRpb24u/Y29tL25zZncvd3At/Y29udGVudC91cGxv/YWRzLzIwMjQvMDIv/cmlhcy1ncmVtb3J5/LWVjY2hpLTEuanBn"
             alt="Your Avatar"
             className="w-10 h-10 rounded-full"
+            height={50}
+            width={50}
+
           />
           <div className="flex flex-col text-left">
             <span className="text-xl font-mono font-semibold">YourName</span>
@@ -95,10 +98,12 @@ const Page = () => {
 
         {/* Right side: Opponent info */}
         <div className="flex items-center space-x-4">
-          <img
-            src="opponent-avatar.jpg"
+          <Image
+            src="https://imgs.search.brave.com/unsuL5qRMvDh4awFeGIv_2iwXAGsvFdUN5UAo-YHoQU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vd3d3LnRy/aWNrc2J5c3RnLm9y/Zy93cC1jb250ZW50/L3VwbG9hZHMvMjAx/OC8wNC9ob3QtYW5p/bWUtZ2lybC5qcGVn/P3Jlc2l6ZT0xMDI0/LDc2OA"
             alt="Opponent Avatar"
             className="w-10 h-10 rounded-full"
+            height={50}
+            width={50}
           />
           <div className="flex flex-col text-right">
             <span className="text-xl font-mono font-semibold">
