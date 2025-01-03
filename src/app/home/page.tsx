@@ -1,79 +1,78 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import UserDetails from "@/components/UserDetails";
-import ListCard from "@/components/ListCard";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useAuthStore } from "@/store/authStore";
-import ProtectedRoute from "@/components/ProtectedRoute";
-
-
+import React from 'react';
+import Link from 'next/link';
 
 const Home = () => {
-  const [isCreateModelShow, setIsCreateModelShow] = useState(false);
-  const isLoggedIn = useAuthStore(state => state.isLoggedIn);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!isLoggedIn) {
-      router.push('/login');
-    }
-  }, [isLoggedIn]);
-
-
   return (
-    <ProtectedRoute>
-    <>
-      <div className="flex items-center justify-between px-[100px] my-[40px]">
-        <UserDetails />
-        <div className="flex items-center gap-1">
-          <button
-            onClick={() => setIsCreateModelShow(true)}
-            className="bg-gradient-to-b from-indigo-900 to-purple-900 w-14 h-10 text-white py-2 px-4 rounded-sm mb-3 text-xl"
-          >
-            +
-          </button>
-        </div>
-      </div>
+    <div className="min-h-screen bg-0a0a0a flex items-center justify-center p-4 md:p-6">
+      <div className="w-full max-w-5xl bg-white/5 backdrop-blur-lg rounded-3xl shadow-2xl overflow-hidden">
+        <div className="w-full p-8 lg:p-12">
+          <div className="text-center space-y-6 mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-200 to-indigo-200">
+              How is your mood shaping today?
+            </h1>
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+              Select the mode that best suits your learning journey. Whether you want to challenge yourself or focus on development, we have got you covered.
+            </p>
+          </div>
 
-      <div className="cards">
-        <div className="list px-[100px]">
-          <Link href="/editor">
-            <ListCard />
-          </Link>
-          <Link href="/editor">
-            <ListCard />
-          </Link>
-        </div>
-      </div>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-200"></div>
+              <Link href="/dsa">
+                <div className="relative h-full p-8 bg-white/10 backdrop-blur-sm rounded-2xl border border-gray-600 hover:border-indigo-500 transition-all duration-200 space-y-4">
+                  <div className="text-2xl font-bold text-white">Battle Mode</div>
+                  <p className="text-gray-300">
+                    Challenge yourself with data structures and algorithms. Perfect for interview preparation and competitive programming.
+                  </p>
+                  <ul className="text-gray-300 space-y-2">
+                    <li className="flex items-center">
+                      <span className="mr-2">&#8226;</span>
+                      Practice coding challenges
+                    </li>
+                    <li className="flex items-center">
+                      <span className="mr-2">•</span>
+                      Time-based competitions
+                    </li>
+                    <li className="flex items-center">
+                      <span className="mr-2">•</span>
+                      Performance tracking
+                    </li>
+                  </ul>
+                </div>
+              </Link>
+            </div>
 
-      
-
-      {isCreateModelShow && (
-        <div className="createModelCon fixed top-0 left-0 bottom-0 w-screen h-screen bg-[rgba(0,0,0,0.1)] flex items-center justify-center">
-          <div className="createModel w-[25vw] h-[30vh] shadow-lg shadow-black/50 bg-[#141414] rounded-[10px] p-[20px]">
-            <h3 className="text-2xl">Create New Project</h3>
-            <input
-              className="w-full mt-2 px-4 py-3 bg-white/10 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-white"
-              type="text"
-              placeholder="Project title"
-            />
-            <div className="flex items-center gap-[10px] w-full mt-2">
-              <button className="bg-blue-600 rounded-[5px] w-[49%] py-[10px]">
-                Create
-              </button>
-              <button
-                onClick={() => setIsCreateModelShow(false)}
-                className="bg-[#1A1919] rounded-[5px] w-[49%] py-[10px]"
-              >
-                Cancel
-              </button>
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-200"></div>
+              <Link href="/projects">
+                <div className="relative h-full p-8 bg-white/10 backdrop-blur-sm rounded-2xl border border-gray-600 hover:border-indigo-500 transition-all duration-200 space-y-4">
+                  <div className="text-2xl font-bold text-white">Development Mode</div>
+                  <p className="text-gray-300">
+                    Focus on building real-world projects and improving your development skills at your own pace.
+                  </p>
+                  <ul className="text-gray-300 space-y-2">
+                    <li className="flex items-center">
+                      <span className="mr-2">•</span>
+                      Project-based learning
+                    </li>
+                    <li className="flex items-center">
+                      <span className="mr-2">•</span>
+                      Best practices guidance
+                    </li>
+                    <li className="flex items-center">
+                      <span className="mr-2">•</span>
+                      Code reviews & feedback
+                    </li>
+                  </ul>
+                </div>
+              </Link>
             </div>
           </div>
+
+         
         </div>
-      )}
-    </>
-    </ProtectedRoute>
+      </div>
+    </div>
   );
 };
 
