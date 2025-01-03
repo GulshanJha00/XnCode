@@ -5,7 +5,6 @@ import { FaPlay } from "react-icons/fa";
 import { IoArrowBack } from "react-icons/io5";
 import { LuAlarmClock } from "react-icons/lu";
 import { RxUpload } from "react-icons/rx";
-import ProtectedRoute from "@/components/ProtectedRoute";
 import questions from "../data/questions";
 
 const Page = () => {
@@ -79,13 +78,17 @@ const Page = () => {
               <h3 className="font-semibold">Example 2:</h3>
               <p>Input: {`${quesData.examples[1].input}`}</p>
               <p>Output: {`${quesData.examples[1].output}`}</p>
+            </div><div className="mb-6">
+              <h3 className="font-semibold">Example 3:</h3>
+              <p>Input: {`${quesData.examples[2].input}`}</p>
+              <p>Output: {`${quesData.examples[2].output}`}</p>
             </div>
 
             <h3 className="font-semibold mb-3">Constraints:</h3>
             <ul className="list-disc list-inside text-gray-300">
-              <li>The number of nodes in the list is in the range [0, 200].</li>
-              <li>{`-100 <= Node.val <= 100`}</li>
-              <li>{`-200 <= x <= 200`}</li>
+              <li>{`${quesData.constraints[0]}`}</li>
+              <li>{`${quesData.constraints[1]}`}</li>
+              <li>{`${quesData.constraints[2]}`}</li>
             </ul>
           </aside>
 
