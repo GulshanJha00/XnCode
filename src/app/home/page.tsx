@@ -1,5 +1,5 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
 
 const Home = () => {
   return (
@@ -11,12 +11,14 @@ const Home = () => {
               Code Like a Pro
             </h1>
             <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-  What&apos;s your next move? <span className="text-blue-400 font-bold">Code smarter</span>,  
-  <span className="text-green-400 font-bold">build faster</span>, and  
-  <span className="text-purple-400 font-bold">achieve greatness</span> with our tailored learning modes.
-</p>
-
-
+              Choose the mode that matches your goals. Whether it's{" "}
+              <span className="text-green-400 font-bold">
+                mastering challenges
+              </span>{" "}
+              or{" "}
+              <span className="text-blue-400 font-bold">building projects</span>
+              , we've got you covered.
+            </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -25,9 +27,12 @@ const Home = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg blur-lg opacity-50 group-hover:opacity-100 transition duration-300"></div>
               <Link href="/dsa">
                 <div className="relative p-8 bg-gray-800 rounded-lg border border-gray-700 hover:border-green-500 transition-all duration-300 space-y-4">
-                  <h2 className="text-2xl font-semibold text-green-400">Battle Mode</h2>
+                  <h2 className="text-2xl font-semibold text-green-400">
+                    Battle Mode
+                  </h2>
                   <p className="text-gray-400">
-                    Challenge yourself with DSA-focused problems, perfect for interview prep and coding competitions.
+                    Challenge yourself with DSA-focused problems, perfect for
+                    interview prep and coding competitions.
                   </p>
                   <ul className="text-gray-400 space-y-2">
                     <li className="flex items-center">
@@ -52,9 +57,12 @@ const Home = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg blur-lg opacity-50 group-hover:opacity-100 transition duration-300"></div>
               <Link href="/projects">
                 <div className="relative p-8 bg-gray-800 rounded-lg border border-gray-700 hover:border-blue-500 transition-all duration-300 space-y-4">
-                  <h2 className="text-2xl font-semibold text-blue-400">Development Mode</h2>
+                  <h2 className="text-2xl font-semibold text-blue-400">
+                    Development Mode
+                  </h2>
                   <p className="text-gray-400">
-                    Build real-world projects with step-by-step guidance and feedback.
+                    Build real-world projects with step-by-step guidance and
+                    feedback.
                   </p>
                   <ul className="text-gray-400 space-y-2">
                     <li className="flex items-center">
