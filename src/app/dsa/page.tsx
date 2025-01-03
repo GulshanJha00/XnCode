@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useState } from "react";
 import Editor from "@monaco-editor/react";
 import { FaPlay } from "react-icons/fa";
@@ -7,22 +6,39 @@ import { LuAlarmClock } from "react-icons/lu";
 import { RxUpload } from "react-icons/rx";
 import questions from "../data/questions";
 
+interface questions{
+  title : string,
+  testCases: string,
+  timeInMs: string,
+  difficulty: string,
+  avgTime: string,
+  expectedComplexity: string,
+
+
+}
 const Page = () => {
-  const quesData = questions[0];
+  const [quesData, setQuesData] = useState(null);
   const [time, setTime] = useState(20000);
+
+  // Set the random question once on component mount
+  useEffect(() => {
+    const i = Math.floor(Math.random() * 41);
+    console.log(i); // For debugging
+    setQuesData(questions[i]);
+  }, []); // Empty dependency array to ensure this effect runs only once when the component mounts
 
   const testCases = [
     {
-      input: quesData.testCases[0]?.input,
-      output: quesData.testCases[0]?.output,
+      input: quesData?.testCases[0]?.input,
+      output: quesData?.testCases[0]?.output,
     },
-    quesData.testCases[1]
+    quesData?.testCases[1]
       ? {
           input: quesData.testCases[1]?.input,
           output: quesData.testCases[1]?.output,
         }
       : null,
-    quesData.testCases[2]
+    quesData?.testCases[2]
       ? {
           input: quesData.testCases[2]?.input,
           output: quesData.testCases[2]?.output,
@@ -31,10 +47,9 @@ const Page = () => {
   ].filter(Boolean); // Filter out null values
 
   // Default to the first test case or null if no valid test cases exist
-  const [selectedTestCase, setSelectedTestCase] = useState<{
-    input: string;
-    output: string;
-  } | null>(testCases.length > 0 ? testCases[0] : null);
+  const [selectedTestCase, setSelectedTestCase] = useState(
+    testCases.length > 0 ? testCases[0] : null
+  );
 
   useEffect(() => {
     if (time <= 0) return;
@@ -44,11 +59,13 @@ const Page = () => {
     return () => clearTimeout(timer);
   }, [time]);
 
-  const formatTime = (timeInMs: number) => {
+  const formatTime = (timeInMs) => {
     const minutes = Math.floor(timeInMs / 60000);
     const seconds = Math.floor((timeInMs % 60000) / 1000);
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
+
+  if (!quesData) return <div>Loading...</div>; // Display a loading message until quesData is available
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -101,26 +118,22 @@ const Page = () => {
       <div className="flex flex-col md:flex-row">
         {/* Problem Statement Section */}
         <aside className="w-full md:w-1/2 bg-gray-800 p-6 overflow-y-auto border-r border-gray-700">
-          <h2 className="text-3xl font-extrabold mb-4">{`${quesData.title}`}</h2>
+          <h2 className="text-3xl font-extrabold mb-4">{quesData.title}</h2>
           <div className="flex items-center gap-3 mb-6">
-            <span className="bg-yellow-300 text-black px-3 py-1 rounded-full">{`${quesData.difficulty}`}</span>
-            <span className="bg-gray-600 text-yellow-300 px-3 py-1 rounded-full">
-              Avg Time: {`${quesData.avgTime}`}
+            <span className="bg-yellow-300 text-black px-3 py-1 rounded-full">
+              {quesData.difficulty}
             </span>
             <span className="bg-gray-600 text-yellow-300 px-3 py-1 rounded-full">
-              Expected Complexity: {`${quesData.expectedComplexity}`}
+              Avg Time: {quesData.avgTime}
+            </span>
+            <span className="bg-gray-600 text-yellow-300 px-3 py-1 rounded-full">
+              Expected Complexity: {quesData.expectedComplexity}
             </span>
           </div>
 
-          <p className="mb-6">{`${quesData.description}`}</p>
+          <p className="mb-6">{quesData.description}</p>
 
-          {/* <ul className="list-disc list-inside text-gray-300">
-            {quesData.constraints.map((constraint, index) => (
-              <li key={index}>{constraint}</li>
-            ))}
-          </ul> */}
-
-          <div >
+          <div>
             {quesData.examples.map((example, index) => (
               <div key={index} className="mb-6">
                 <h3 className="font-semibold mb-2">Example {index + 1}:</h3>
