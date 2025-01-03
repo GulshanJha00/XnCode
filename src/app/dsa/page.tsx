@@ -9,6 +9,16 @@ import ProtectedRoute from "@/components/ProtectedRoute";
 
 const Page = () => {
   const [time, setTime] = useState(20000);
+  const [selectedTestCase, setSelectedTestCase] = useState<{
+    input: string;
+    output: string;
+  } | null>(null);
+
+  const testCases = [
+    { input: "head = [1,4,3,2,5,2], x = 3", output: "[1,2,2,4,3,5]" },
+    { input: "head = [2,1], x = 2", output: "[1,2]" },
+    { input: "head = [5,1,7,3], x = 4", output: "[1,3,5,7]" },
+  ];
 
   useEffect(() => {
     if (time <= 0) return;
@@ -18,10 +28,14 @@ const Page = () => {
     return () => clearTimeout(timer);
   }, [time]);
 
-  const formatTime = (timeInMs) => {
+  const formatTime = (timeInMs: number) => {
     const minutes = Math.floor(timeInMs / 60000);
     const seconds = Math.floor((timeInMs % 60000) / 1000);
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  };
+
+  const clearTestCase = () => {
+    setSelectedTestCase(null);
   };
 
   return (
@@ -136,7 +150,35 @@ const Page = () => {
             {/* Test Cases */}
             <div className="bg-gray-800 p-4 h-64 overflow-y-auto">
               <h3 className="text-lg font-semibold mb-3">Test Cases</h3>
-              <p className="text-gray-300">Test cases will be displayed here...</p>
+              <div className="flex gap-2 mb-4">
+                {testCases.map((testCase, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedTestCase(testCase)}
+                    className="bg-purple-600 px-4 py-2 rounded-lg hover:bg-purple-700 transition"
+                  >
+                    Test Case {index + 1}
+                  </button>
+                ))}
+              </div>
+              {selectedTestCase ? (
+                <div className="p-4 bg-gray-700 rounded-lg">
+                  <p>
+                    <strong>Input:</strong> {selectedTestCase.input}
+                  </p>
+                  <p>
+                    <strong>Output:</strong> {selectedTestCase.output}
+                  </p>
+                  <button
+                    onClick={clearTestCase}
+                    className="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
+                  >
+                    Clear
+                  </button>
+                </div>
+              ) : (
+                <p className="text-gray-400">Select a test case to view details.</p>
+              )}
             </div>
           </main>
         </div>
