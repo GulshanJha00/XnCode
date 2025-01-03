@@ -1,91 +1,82 @@
-import React from "react";
-import Link from "next/link";
-import { FaCode, FaStopwatch, FaChartLine, FaProjectDiagram, FaLightbulb, FaUserCheck } from "react-icons/fa";
+import React from 'react';
+import Link from 'next/link';
+
 
 const Home = () => {
+  
   return (
-    <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center p-4 md:p-6">
-      <div className="w-full max-w-6xl bg-gray-800/60 backdrop-blur-lg rounded-xl shadow-xl overflow-hidden">
-        <div className="w-full p-8 lg:p-12 space-y-8">
-          <div className="text-center space-y-4">
-            <h1 className="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">
-            Feeling competitive or creative today?
+   
+    <div className="min-h-screen bg-0a0a0a flex items-center justify-center p-4 md:p-6">
+      <div className="w-full max-w-5xl bg-white/5 backdrop-blur-lg rounded-3xl shadow-2xl overflow-hidden">
+        <div className="w-full p-8 lg:p-12">
+          <div className="text-center space-y-6 mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-200 to-indigo-200">
+              How is your mood shaping today?
             </h1>
-            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-              Choose the mode that matches your goals. Whether it&apos;s{" "}
-              <span className="text-green-400 font-bold">
-                mastering challenges
-              </span>{" "}
-              or{" "}
-              <span className="text-blue-400 font-bold">building projects</span>
-              , we&apos;ve got you covered.
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+              Select the mode that best suits your learning journey. Whether you want to challenge yourself or focus on development, we have got you covered.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Battle Mode */}
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <div className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg blur-lg opacity-50 group-hover:opacity-100 transition duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-200"></div>
               <Link href="/dsa">
-                <div className="relative p-8 bg-gray-800 rounded-lg border border-gray-700 hover:border-green-500 transition-all duration-300 space-y-4">
-                  <h2 className="text-2xl font-semibold text-green-400">
-                    Battle Mode
-                  </h2>
-                  <p className="text-gray-400">
-                    Challenge yourself with DSA-focused problems, perfect for
-                    interview prep and coding competitions.
+                <div className="relative h-full p-8 bg-white/10 backdrop-blur-sm rounded-2xl border border-gray-600 hover:border-indigo-500 transition-all duration-200 space-y-4">
+                  <div className="text-2xl font-bold text-white">Battle Mode</div>
+                  <p className="text-gray-300">
+                    Challenge yourself with data structures and algorithms. Perfect for interview preparation and competitive programming.
                   </p>
-                  <div className="flex flex-col space-y-3">
-                    <div className="flex items-center">
-                      <FaCode className="text-green-400 mr-3 text-xl" />
-                      <span>Competitive coding challenges</span>
-                    </div>
-                    <div className="flex items-center">
-                      <FaStopwatch className="text-green-400 mr-3 text-xl" />
-                      <span>Time-based contests</span>
-                    </div>
-                    <div className="flex items-center">
-                      <FaChartLine className="text-green-400 mr-3 text-xl" />
-                      <span>Real-time performance tracking</span>
-                    </div>
-                  </div>
+                  <ul className="text-gray-300 space-y-2">
+                    <li className="flex items-center">
+                      <span className="mr-2">&#8226;</span>
+                      Practice coding challenges
+                    </li>
+                    <li className="flex items-center">
+                      <span className="mr-2">•</span>
+                      Time-based competitions
+                    </li>
+                    <li className="flex items-center">
+                      <span className="mr-2">•</span>
+                      Performance tracking
+                    </li>
+                  </ul>
                 </div>
               </Link>
             </div>
 
-            {/* Development Mode */}
             <div className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg blur-lg opacity-50 group-hover:opacity-100 transition duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-200"></div>
               <Link href="/projects">
-                <div className="relative p-8 bg-gray-800 rounded-lg border border-gray-700 hover:border-blue-500 transition-all duration-300 space-y-4">
-                  <h2 className="text-2xl font-semibold text-blue-400">
-                    Development Mode
-                  </h2>
-                  <p className="text-gray-400">
-                    Build real-world projects with step-by-step guidance and
-                    feedback.
+                <div className="relative h-full p-8 bg-white/10 backdrop-blur-sm rounded-2xl border border-gray-600 hover:border-indigo-500 transition-all duration-200 space-y-4">
+                  <div className="text-2xl font-bold text-white">Development Mode</div>
+                  <p className="text-gray-300">
+                    Focus on building real-world projects and improving your development skills at your own pace.
                   </p>
-                  <div className="flex flex-col space-y-3">
-                    <div className="flex items-center">
-                      <FaProjectDiagram className="text-blue-400 mr-3 text-xl" />
-                      <span>Project-based learning</span>
-                    </div>
-                    <div className="flex items-center">
-                      <FaLightbulb className="text-blue-400 mr-3 text-xl" />
-                      <span>Best coding practices</span>
-                    </div>
-                    <div className="flex items-center">
-                      <FaUserCheck className="text-blue-400 mr-3 text-xl" />
-                      <span>Personalized code reviews</span>
-                    </div>
-                  </div>
+                  <ul className="text-gray-300 space-y-2">
+                    <li className="flex items-center">
+                      <span className="mr-2">•</span>
+                      Project-based learning
+                    </li>
+                    <li className="flex items-center">
+                      <span className="mr-2">•</span>
+                      Best practices guidance
+                    </li>
+                    <li className="flex items-center">
+                      <span className="mr-2">•</span>
+                      Code reviews & feedback
+                    </li>
+                  </ul>
                 </div>
               </Link>
             </div>
           </div>
+
+         
         </div>
       </div>
     </div>
+   
   );
 };
 
