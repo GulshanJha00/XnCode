@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { FaCode, FaStopwatch, FaChartLine, FaProjectDiagram, FaLightbulb, FaUserCheck } from "react-icons/fa";
 
 const Home = () => {
   return (
@@ -8,10 +9,10 @@ const Home = () => {
         <div className="w-full p-8 lg:p-12 space-y-8">
           <div className="text-center space-y-4">
             <h1 className="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">
-              Code Like a Pro
+            Feeling competitive or creative today?
             </h1>
             <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-              Choose the mode that matches your goals. Whether it's{" "}
+              Choose the mode that matches your goals. Whether it&apos;s{" "}
               <span className="text-green-400 font-bold">
                 mastering challenges
               </span>{" "}
@@ -34,20 +35,20 @@ const Home = () => {
                     Challenge yourself with DSA-focused problems, perfect for
                     interview prep and coding competitions.
                   </p>
-                  <ul className="text-gray-400 space-y-2">
-                    <li className="flex items-center">
-                      <span className="mr-2 text-green-400">&#8226;</span>
-                      Competitive coding challenges
-                    </li>
-                    <li className="flex items-center">
-                      <span className="mr-2 text-green-400">&#8226;</span>
-                      Time-based contests
-                    </li>
-                    <li className="flex items-center">
-                      <span className="mr-2 text-green-400">&#8226;</span>
-                      Real-time performance tracking
-                    </li>
-                  </ul>
+                  <div className="flex flex-col space-y-3">
+                    <div className="flex items-center">
+                      <FaCode className="text-green-400 mr-3 text-xl" />
+                      <span>Competitive coding challenges</span>
+                    </div>
+                    <div className="flex items-center">
+                      <FaStopwatch className="text-green-400 mr-3 text-xl" />
+                      <span>Time-based contests</span>
+                    </div>
+                    <div className="flex items-center">
+                      <FaChartLine className="text-green-400 mr-3 text-xl" />
+                      <span>Real-time performance tracking</span>
+                    </div>
+                  </div>
                 </div>
               </Link>
             </div>
@@ -64,20 +65,20 @@ const Home = () => {
                     Build real-world projects with step-by-step guidance and
                     feedback.
                   </p>
-                  <ul className="text-gray-400 space-y-2">
-                    <li className="flex items-center">
-                      <span className="mr-2 text-blue-400">&#8226;</span>
-                      Project-based learning
-                    </li>
-                    <li className="flex items-center">
-                      <span className="mr-2 text-blue-400">&#8226;</span>
-                      Best coding practices
-                    </li>
-                    <li className="flex items-center">
-                      <span className="mr-2 text-blue-400">&#8226;</span>
-                      Personalized code reviews
-                    </li>
-                  </ul>
+                  <div className="flex flex-col space-y-3">
+                    <div className="flex items-center">
+                      <FaProjectDiagram className="text-blue-400 mr-3 text-xl" />
+                      <span>Project-based learning</span>
+                    </div>
+                    <div className="flex items-center">
+                      <FaLightbulb className="text-blue-400 mr-3 text-xl" />
+                      <span>Best coding practices</span>
+                    </div>
+                    <div className="flex items-center">
+                      <FaUserCheck className="text-blue-400 mr-3 text-xl" />
+                      <span>Personalized code reviews</span>
+                    </div>
+                  </div>
                 </div>
               </Link>
             </div>
