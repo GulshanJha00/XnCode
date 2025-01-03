@@ -18,7 +18,7 @@ const Home = () => {
               </span>{" "}
               or{" "}
               <span className="text-blue-400 font-bold">building projects</span>
-              , we've got you covered.
+              , we&apos;ve got you covered.
             </p>
           </div>
 
