@@ -41,7 +41,6 @@ const Page = () => {
   };
 
   return (
-    <ProtectedRoute>
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-black text-white">
         {/* Header */}
         <header className="h-16 bg-purple-800 flex justify-between items-center px-6 shadow-lg">
@@ -59,7 +58,7 @@ const Page = () => {
             <div className="flex items-center gap-3 mb-6">
               <span className="bg-yellow-300 text-black px-3 py-1 rounded-full">{`${quesData.difficulty}`}</span>
               <span className="bg-gray-600 text-yellow-300 px-3 py-1 rounded-full">
-                Avg Time: 7 Min
+                Avg Time: {`${quesData.avgTime}`}
               </span>
               <span className="bg-gray-600 text-yellow-300 px-3 py-1 rounded-full">
                 Expected Complexity: O(logn)
@@ -185,7 +184,6 @@ const Page = () => {
           </main>
         </div>
       </div>
-    </ProtectedRoute>
   );
 };
 
