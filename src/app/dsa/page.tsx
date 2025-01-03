@@ -12,16 +12,29 @@ const Page = () => {
   const [time, setTime] = useState(20000);
 
   const testCases = [
-    { input: quesData.testCases[0]?.input, output: quesData.testCases[0]?.output },
-    quesData.testCases[1] ? { input: quesData.testCases[1]?.input, output: quesData.testCases[1]?.output } : null,
-    quesData.testCases[2] ? { input: quesData.testCases[2]?.input, output: quesData.testCases[2]?.output } : null
+    {
+      input: quesData.testCases[0]?.input,
+      output: quesData.testCases[0]?.output,
+    },
+    quesData.testCases[1]
+      ? {
+          input: quesData.testCases[1]?.input,
+          output: quesData.testCases[1]?.output,
+        }
+      : null,
+    quesData.testCases[2]
+      ? {
+          input: quesData.testCases[2]?.input,
+          output: quesData.testCases[2]?.output,
+        }
+      : null,
   ].filter(Boolean); // Filter out null values
 
   // Default to the first test case or null if no valid test cases exist
   const [selectedTestCase, setSelectedTestCase] = useState<{
     input: string;
     output: string;
-  } | null>(testCases.length > 0 ? testCases[0] : null); 
+  } | null>(testCases.length > 0 ? testCases[0] : null);
 
   useEffect(() => {
     if (time <= 0) return;
@@ -60,9 +73,7 @@ const Page = () => {
             <LuAlarmClock className="text-yellow-400" />
             <span
               className={`font-bold ${
-                time <= 10000
-                  ? "text-red-500 animate-pulse"
-                  : "text-green-400"
+                time <= 10000 ? "text-red-500 animate-pulse" : "text-green-400"
               }`}
             >
               {formatTime(time)}
@@ -78,7 +89,9 @@ const Page = () => {
             className="w-10 h-10 rounded-full"
           />
           <div className="flex flex-col text-right">
-            <span className="text-xl font-mono font-semibold">OpponentName</span>
+            <span className="text-xl font-mono font-semibold">
+              OpponentName
+            </span>
             <span className="text-sm text-gray-400">Rating: 110</span>
           </div>
         </div>
@@ -101,32 +114,27 @@ const Page = () => {
 
           <p className="mb-6">{`${quesData.description}`}</p>
 
-          <div className="mb-6">
-            <h3 className="font-semibold">Example 1:</h3>
-            <p>Input: {`${quesData.examples[0].input}`}</p>
-            <p>Output: {`${quesData.examples[0].output}`}</p>
+          {/* <ul className="list-disc list-inside text-gray-300">
+            {quesData.constraints.map((constraint, index) => (
+              <li key={index}>{constraint}</li>
+            ))}
+          </ul> */}
+
+          <div >
+            {quesData.examples.map((example, index) => (
+              <div key={index} className="mb-6">
+                <h3 className="font-semibold mb-2">Example {index + 1}:</h3>
+                <p>Input: {example.input}</p>
+                <p>Output: {example.output}</p>
+              </div>
+            ))}
           </div>
-          {quesData.examples[1]? <div className="mb-6">
-          <h3 className="font-semibold">Example 2:</h3>
-          <p>Input: {`${quesData.examples[1].input}`}</p>
-          <p>Output: {`${quesData.examples[1].output}`}</p>
-        </div>
-          
-        : " "}
-
-        {quesData.examples[2]?   <div className="mb-6">
-            <h3 className="font-semibold">Example 3:</h3>
-            <p>Input: {`${quesData.examples[2].input}`}</p>
-            <p>Output: {`${quesData.examples[2].output}`}</p>
-          </div>  : " "}
-
-        
 
           <h3 className="font-semibold mb-3">Constraints:</h3>
           <ul className="list-disc list-inside text-gray-300">
-            <li>{`${quesData.constraints[0]}`}</li>
-            <li>{`${quesData.constraints[1]}`}</li>
-            <li>{`${quesData.constraints[2]}`}</li>
+            {quesData.constraints.map((constraint, index) => (
+              <li key={index}>{constraint}</li>
+            ))}
           </ul>
         </aside>
 
