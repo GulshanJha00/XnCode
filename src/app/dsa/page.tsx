@@ -6,6 +6,7 @@ import { IoArrowBack } from "react-icons/io5";
 import { LuAlarmClock } from "react-icons/lu";
 import { RxUpload } from "react-icons/rx";
 import questions from "../data/questions"; // Make sure the questions data is typed correctly
+import LoadingScreen from "../loading";
 
 // Define your Question and TestCase types
 interface TestCase {
@@ -29,6 +30,14 @@ const Page = () => {
   const [quesData, setQuesData] = useState<Question | null>(null); // Type state as Question | null
   const [time, setTime] = useState(20000);
   
+  // Initialize testCases as a fallback in case quesData is null
+  const testCases = quesData?.testCases || [
+    { input: 'default input', output: 'default output' },
+    { input: 'default input', output: 'default output' },
+    { input: 'default input', output: 'default output' },
+  ];
+
+  const [selectedTestCase, setSelectedTestCase] = useState(testCases[0]);
 
   // Set the random question once on component mount
   useEffect(() => {
@@ -36,31 +45,6 @@ const Page = () => {
     console.log(i); // For debugging
     setQuesData(questions[i]);
   }, []); // Empty dependency array to ensure this effect runs only once when the component mounts
-
-  if (!quesData) return <div>Loading...</div>; // Display a loading message until quesData is available
-
-  const testCases = [
-    {
-      input: quesData.testCases[0]?.input,
-      output: quesData.testCases[0]?.output,
-    },
-    quesData.testCases[1]
-      ? {
-          input: quesData.testCases[1]?.input,
-          output: quesData.testCases[1]?.output,
-        }
-      : null,
-    quesData.testCases[2]
-      ? {
-          input: quesData.testCases[2]?.input,
-          output: quesData.testCases[2]?.output,
-        }
-      : null,
-  ].filter(Boolean); // Filter out null values
-
-  const [selectedTestCase, setSelectedTestCase] = useState(
-    testCases.length > 0 ? testCases[0] : null
-  );
 
   useEffect(() => {
     if (time <= 0) return;
@@ -76,9 +60,7 @@ const Page = () => {
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
-
-
-  if (!quesData) return <div>Loading...</div>; // Display a loading message until quesData is available
+  if (!quesData) return <div><LoadingScreen/></div>; // Display a loading message until quesData is available
 
   return (
     <div className="min-h-screen bg-black text-white">
