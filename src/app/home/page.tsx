@@ -1,8 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 
+
 const Home = () => {
+  
   return (
+   
     <div className="min-h-screen bg-0a0a0a flex items-center justify-center p-4 md:p-6">
       <div className="w-full max-w-5xl bg-white/5 backdrop-blur-lg rounded-3xl shadow-2xl overflow-hidden">
         <div className="w-full p-8 lg:p-12">
@@ -73,6 +76,7 @@ const Home = () => {
         </div>
       </div>
     </div>
+   
   );
 };
 

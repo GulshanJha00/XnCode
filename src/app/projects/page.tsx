@@ -1,25 +1,16 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import UserDetails from "@/components/UserDetails";
 import ListCard from "@/components/ListCard";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useAuthStore } from "@/store/authStore";
+
 import ProtectedRoute from "@/components/ProtectedRoute";
 
 
 
 const Projects = () => {
   const [isCreateModelShow, setIsCreateModelShow] = useState(false);
-  const isLoggedIn = useAuthStore(state => state.isLoggedIn);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!isLoggedIn) {
-      router.push('/login');
-    }
-  }, [isLoggedIn]);
-
+ 
 
   return (
     <ProtectedRoute>
