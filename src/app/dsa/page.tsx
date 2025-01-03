@@ -13,8 +13,8 @@ interface questions{
   difficulty: string,
   avgTime: string,
   expectedComplexity: string,
-
-
+  examples: string,
+  constraints: string,
 }
 const Page = () => {
   const [quesData, setQuesData] = useState(null);
