@@ -1,7 +1,6 @@
 import { BackgroundLines } from "@/components/ui/background-lines.tsx";
 import Homepage from "./pages/Homepage";
 import HeroSection from "@/components/HeroSection";
-import Footer from "@/components/Footer";
 // import { CodeEditor } from "@/components/CodeEditor";
 
 export default function Home() {
@@ -12,7 +11,6 @@ export default function Home() {
       </BackgroundLines>
       <HeroSection />
       {/* <CodeEditor/> */}
-      <Footer/>
     </div>
   );
 }

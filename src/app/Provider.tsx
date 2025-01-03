@@ -2,6 +2,7 @@
 import React from "react";
 import { usePathname } from "next/navigation";
 import Navbar from "./pages/Navbar";
+import Footer from "@/components/Footer";
 
 interface ProviderProps {
   children: React.ReactNode;
@@ -15,6 +16,7 @@ const Provider: React.FC<ProviderProps> = ({ children }) => {
       {/* Conditionally render Navbar */}
       {pathname !== "/dsa" && <Navbar />}
       {children}
+      <Footer/>
     </div>
   );
 };
