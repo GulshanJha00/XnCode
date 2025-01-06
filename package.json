@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@monaco-editor/react": "^4.6.0",
-    "@tabler/icons-react": "^3.26.0",
+    "@tabler/icons-react": "^3.27.1",
     "@types/react-syntax-highlighter": "^15.5.13",
     "bcryptjs": "^2.4.3",
     "clsx": "^2.1.1",

@@ -1,23 +1,47 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FaCode, FaQuestionCircle, FaUsers } from "react-icons/fa";
+import { CodeBlock } from "@/components/ui/code-block";
+import BattleEditor from "@/components/BattleEditor";
 
 const BattleMode = () => {
+  const code = `const DummyComponent = () => {
+    const [count, setCount] = React.useState(0);
+   
+    const handleClick = () => {
+      setCount(prev => prev + 1);
+    };
+   
+    return (
+      <div className="p-4 border rounded-lg">
+        <h2 className="text-xl font-bold mb-4">Fights Counter</h2>
+        <p className="mb-2">Fight Club Fights Count: {count}</p>
+        <button 
+          onClick={handleClick}
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          Increment
+        </button>
+      </div>
+    );
+  };
+  `;
+
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col md:flex-row items-center justify-center p-4 md:p-6">
       {/* Left Side: Editor Image */}
       <div className="w-full md:w-1/2 flex items-center justify-center p-6">
-        <div className="relative w-full max-w-md">
-          <Image
-            src="/editor-image.png" // Replace with your editor image path
-            alt="Code Editor"
-            width={400}
-            height={400}
-            className="rounded-lg shadow-lg border border-gray-700"
-          />
-        </div>
-      </div>
+  <div className="max-w-3xl mx-auto w-full bg-gray-900 border border-gray-700 rounded-lg shadow-lg overflow-hidden">
+    {/* Header bar for the editor */}
+    
+
+    <BattleEditor/>
+    
+  </div>
+</div>
+
 
       {/* Right Side: Battle Options */}
       <div className="w-full md:w-1/2 space-y-8 p-6">
@@ -35,7 +59,7 @@ const BattleMode = () => {
           {/* 1v1 Coding Battle */}
           <div className="group relative">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg blur-lg opacity-50 group-hover:opacity-100 transition duration-300"></div>
-            <Link href="/battle/1v1-coding">
+            <Link href="/battle/dsa">
               <div className="relative p-8 bg-gray-800 rounded-lg border border-gray-700 hover:border-green-500 transition-all duration-300 space-y-4">
                 <h2 className="text-2xl font-semibold text-green-400">
                   1v1 Coding Battle
@@ -75,7 +99,7 @@ const BattleMode = () => {
 
         {/* Back Button */}
         <div className="text-center">
-          <Link href="/">
+          <Link href="/home">
             <button className="px-6 py-3 bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600 transition">
               Back to Home
             </button>

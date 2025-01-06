@@ -5,9 +5,10 @@ import { FaPlay } from "react-icons/fa";
 import { IoArrowBack } from "react-icons/io5";
 import { LuAlarmClock } from "react-icons/lu";
 import { RxUpload } from "react-icons/rx";
-import questions from "../data/questions"; // Make sure the questions data is typed correctly
-import LoadingScreen from "../loading";
+import questions from "../../data/questions"; // Make sure the questions data is typed correctly
+import LoadingScreen from "../../loading";
 import Image from "next/image";
+
 // Define your Question and TestCase types
 interface TestCase {
   input: string;
