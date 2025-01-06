@@ -26,7 +26,7 @@ const Home = () => {
             {/* Battle Mode */}
             <div className="group relative">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg blur-lg opacity-50 group-hover:opacity-100 transition duration-300"></div>
-              <Link href="/battlemode">
+              <Link href="/battle">
                 <div className="relative p-8 bg-gray-800 rounded-lg border border-gray-700 hover:border-green-500 transition-all duration-300 space-y-4">
                   <h2 className="text-2xl font-semibold text-green-400">
                     Battle Mode

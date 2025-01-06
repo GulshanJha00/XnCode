@@ -14,7 +14,7 @@ const Provider: React.FC<ProviderProps> = ({ children }) => {
   return (
     <div>
       {/* Conditionally render Navbar */}
-      {pathname !== "/dsa" && <Navbar />}
+      {pathname !== "/battle/1v1" && <Navbar />}
       {children}
       <Footer/>
     </div>
