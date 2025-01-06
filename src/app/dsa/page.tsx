@@ -8,6 +8,7 @@ import { RxUpload } from "react-icons/rx";
 import questions from "../data/questions"; // Make sure the questions data is typed correctly
 import LoadingScreen from "../loading";
 import Image from "next/image";
+import ProtectedRoute from "@/components/ProtectedRoute";
 // Define your Question and TestCase types
 interface TestCase {
   input: string;
@@ -63,6 +64,7 @@ const Page = () => {
   if (!quesData) return <div><LoadingScreen/></div>; // Display a loading message until quesData is available
 
   return (
+    <ProtectedRoute>
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
       <header className="h-16 flex justify-between items-center px-6 bg-black text-white border-b border-gray-700">
@@ -224,6 +226,7 @@ const Page = () => {
         </main>
       </div>
     </div>
+    </ProtectedRoute>
   );
 };
 
