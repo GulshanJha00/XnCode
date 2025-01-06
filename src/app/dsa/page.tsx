@@ -8,7 +8,6 @@ import { RxUpload } from "react-icons/rx";
 import questions from "../data/questions"; // Make sure the questions data is typed correctly
 import LoadingScreen from "../loading";
 import Image from "next/image";
-import ProtectedRoute from "@/components/ProtectedRoute";
 // Define your Question and TestCase types
 interface TestCase {
   input: string;
