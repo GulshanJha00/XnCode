@@ -64,7 +64,6 @@ const Page = () => {
   if (!quesData) return <div><LoadingScreen/></div>; // Display a loading message until quesData is available
 
   return (
-    <ProtectedRoute>
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
       <header className="h-16 flex justify-between items-center px-6 bg-black text-white border-b border-gray-700">
@@ -97,7 +96,6 @@ const Page = () => {
             </span>
           </div>
         </div>
-
         {/* Right side: Opponent info */}
         <div className="flex items-center space-x-4">
           <Image
@@ -226,7 +224,6 @@ const Page = () => {
         </main>
       </div>
     </div>
-    </ProtectedRoute>
   );
 };
 
