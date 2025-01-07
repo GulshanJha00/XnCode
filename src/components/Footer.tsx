@@ -1,133 +1,100 @@
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 import Link from "next/link";
+
 const Footer = () => {
   return (
-    <footer className="bg-gray-900  text-white py-8">
-      <div className="flex flex-col mx-10 px-6 md:px-12">
-        <div className="flex items-center justify-between mb-6">
-          <div className="text-2xl font-bold w-full text-center">
-            <span className="text-blue-500 mx-auto ">XnCode</span>
+    <footer className="bg-gray-800 text-white py-12">
+      <div className="container mx-auto px-6 md:px-12">
+        <div className="flex justify-center items-center mb-6">
+          <div className="text-3xl font-bold text-center text-white">
+            <span className="text-purple-500">XnCode</span>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:place-content-center sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-          <div>
-            <h3 className="font-semibold text-lg text-center lg:text-start mb-4">
-              Quick Links
-            </h3>
-            <ul className="list-disc list-inside">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+          {/* Quick Links */}
+          <div className="space-y-4">
+            <h3 className="font-semibold text-xl text-white mb-4">Quick Links</h3>
+            <ul>
               <li>
-                <Link href="#" className="hover:text-blue-500">
-                  Home
+                <Link href="/" className="text-gray-400 hover:text-purple-500 flex items-center">
+                  <span className="mr-2">🏠</span> Home
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-blue-500">
-                  Features
+                <Link href="/features" className="text-gray-400 hover:text-purple-500 flex items-center">
+                  <span className="mr-2">🔧</span> Features
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-blue-500">
-                  Blog
+                <Link href="/blog" className="text-gray-400 hover:text-purple-500 flex items-center">
+                  <span className="mr-2">📝</span> Blog
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-blue-500">
-                  Pricing
+                <Link href="/pricing" className="text-gray-400 hover:text-purple-500 flex items-center">
+                  <span className="mr-2">💸</span> Pricing
                 </Link>
               </li>
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-semibold text-center lg:text-start text-lg mb-4">
-              Resources
-            </h3>
-            <ul className="list-disc list-inside">
+          {/* Resources */}
+          <div className="space-y-4">
+            <h3 className="font-semibold text-xl text-white mb-4">Resources</h3>
+            <ul>
               <li>
-                <Link href="#" className="hover:text-blue-500">
-                  Docs
+                <Link href="/docs" className="text-gray-400 hover:text-purple-500 flex items-center">
+                  <span className="mr-2">📚</span> Docs
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-blue-500">
-                  API
+                <Link href="/api" className="text-gray-400 hover:text-purple-500 flex items-center">
+                  <span className="mr-2">🔌</span> API
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-blue-500">
-                  Support
+                <Link href="/support" className="text-gray-400 hover:text-purple-500 flex items-center">
+                  <span className="mr-2">🛠️</span> Support
                 </Link>
               </li>
             </ul>
           </div>
-          <div>
-            <h3 className="font-semibold text-lg text-center lg:text-start mb-4">
-              Social
-            </h3>
-            <div className="flex  space-x-4">
+
+          {/* Social */}
+          <div className="space-y-4">
+            <h3 className="font-semibold text-xl text-white mb-4">Follow Us</h3>
+            <div className="flex space-x-6">
               <Link
                 href="#"
-                className="text-xl text-blue-500 hover:text-blue-600"
+                className="text-2xl text-blue-500 hover:text-blue-400"
               >
                 <FaFacebook />
               </Link>
               <Link
                 href="#"
-                className="text-xl text-blue-400 hover:text-blue-500"
+                className="text-2xl text-blue-400 hover:text-blue-300"
               >
                 <FaTwitter />
               </Link>
               <Link
                 href="#"
-                className="text-xl text-pink-500 hover:text-pink-600"
+                className="text-2xl text-pink-500 hover:text-pink-400"
               >
                 <FaInstagram />
               </Link>
               <Link
                 href="#"
-                className="text-xl text-blue-700 hover:text-blue-800"
+                className="text-2xl text-blue-700 hover:text-blue-600"
               >
                 <FaLinkedin />
               </Link>
             </div>
           </div>
-          <div>
-            <h3 className="font-semibold text-center lg:text-start text-lg mb-4">
-            More
-            </h3>
-            <ul className="list-disc list-inside">
-              <li>
-                <Link href="#" className="hover:text-blue-500">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-blue-500">
-                  Careers
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-blue-500">
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-blue-500">
-                  Licence
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          
         </div>
 
-        <div className="border-t border-gray-700 pt-6 text-center text-sm">
-          <p>
-            &copy; 2024 <span className="font-semibold">XnCode</span>. All
-            rights reserved.
-          </p>
+        <div className="border-t border-gray-700 pt-6 text-center text-sm text-gray-400">
+          <p>&copy; 2024 XnCode. All rights reserved.</p>
         </div>
       </div>
     </footer>
