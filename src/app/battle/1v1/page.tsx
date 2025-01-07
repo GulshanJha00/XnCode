@@ -30,6 +30,7 @@ interface Question {
 const Page = () => {
   const [quesData, setQuesData] = useState<Question | null>(null); // Type state as Question | null
   const [time, setTime] = useState(20000);
+  const [lang, setLanguage] = useState("cpp");
   
   // Initialize testCases as a fallback in case quesData is null
   const testCases = quesData?.testCases || [
@@ -172,6 +173,7 @@ const Page = () => {
             <select
               name="language"
               className="bg-gray-700 text-white px-3 py-2 rounded-md"
+              onChange={(e) => setLanguage(e.target.value)}
             >
               <option value="cpp">C++</option>
               <option value="java">Java</option>
@@ -184,8 +186,8 @@ const Page = () => {
           <Editor
             height="55vh"
             width="100%"
-            defaultLanguage="cpp"
-            defaultValue="// Write your code here"
+            defaultLanguage={lang}
+            defaultValue={`// Write your code here`}
             theme="vs-dark"
             options={{
               fontSize: 16,
