@@ -70,7 +70,7 @@ const Page = () => {
         {/* Left side: Your info */}
         <div className="flex items-center space-x-4">
           <Image
-            src="https://imgs.search.brave.com/jo6j5Rz8u0Oh_BYyoKpg8SD6n4bD4JXaSupFflorA-E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hbmlt/ZW1vdGl2YXRpb24u/Y29tL25zZncvd3At/Y29udGVudC91cGxv/YWRzLzIwMjQvMDIv/cmlhcy1ncmVtb3J5/LWVjY2hpLTEuanBn"
+            src="https://i.pinimg.com/236x/7b/4f/0e/7b4f0ea6cf06592f85ccc9c4c8cc7a59.jpg"
             alt="Your Avatar"
             className="w-10 h-10 rounded-full"
             height={50}
@@ -99,7 +99,7 @@ const Page = () => {
         {/* Right side: Opponent info */}
         <div className="flex items-center space-x-4">
           <Image
-            src="https://imgs.search.brave.com/unsuL5qRMvDh4awFeGIv_2iwXAGsvFdUN5UAo-YHoQU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vd3d3LnRy/aWNrc2J5c3RnLm9y/Zy93cC1jb250ZW50/L3VwbG9hZHMvMjAx/OC8wNC9ob3QtYW5p/bWUtZ2lybC5qcGVn/P3Jlc2l6ZT0xMDI0/LDc2OA"
+            src="https://t3.ftcdn.net/jpg/07/53/63/30/360_F_753633004_rDDoG5mPjrmz0TIQ2s5FZqAOkyVa23Wd.jpg"
             alt="Opponent Avatar"
             className="w-10 h-10 rounded-full"
             height={50}
