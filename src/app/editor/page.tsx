@@ -1,142 +1,135 @@
-'use client'
-import React, { useEffect, useRef, useState } from "react";
-import Editor from "@monaco-editor/react";
-import { FaExpandAlt } from "react-icons/fa";
-import { MdLightMode } from "react-icons/md";
-import ProtectedRoute from "@/components/ProtectedRoute";
+'use client';
+import React, { useEffect, useState, useRef, Suspense } from 'react';
+import io, { Socket } from 'socket.io-client';
+import { debounce } from 'lodash';
+import FileTree from '@/components/Tree'; // Import FileTree component
 
-const MyEditor = () => {
-  const [tab, setTab] = useState("html");
-  const [isLightMode, setIsLightMode] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
+interface FileTree {
+    [key: string]: FileTree | null;
+}
 
-  const iframeRef = useRef<HTMLIFrameElement>(null); // Using a ref to access the iframe element
+const Page: React.FC = () => {
+    const [fileTree, setFileTree] = useState<FileTree>({});
+    const [selectedFile, setSelectedFile] = useState<string | null>(null);
+    const [fileContent, setFileContent] = useState<string>('');
+    const [terminalOutput, setTerminalOutput] = useState<string>('');
+    const [socket, setSocket] = useState<Socket | null>(null);
+    const terminalInputRef = useRef<HTMLInputElement>(null);
 
-  const changeTheme = () => {
-    if (isLightMode) {
-      document.body.classList.remove("lightMode");
-      setIsLightMode(false);
-    } else {
-      document.body.classList.add("lightMode");
-      setIsLightMode(true);
-    }
-  };
+    // Fetch file tree
+    useEffect(() => {
+        fetch(`https://xn-backend.onrender.com/files?userId=testuser`)
+            .then((res) => res.json())
+            .then((data) => {
+                if (data && data.tree) {
+                    setFileTree(data.tree);
+                } else {
+                    console.error('Unexpected response format:', data);
+                    setFileTree({});
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching file tree:', error);
+                setFileTree({});
+            });
+    }, []);
 
-  const [htmlCode, setHtmlCode] = useState("<h1>Welcome to XnCode!😘😘</h1>");
-  const [cssCode, setCssCode] = useState("body { background-color: #fff; }");
-  const [jsCode, setJsCode] = useState("console.log('Welcome to XnCode!😘😘')");
+    // Initialize socket
+    useEffect(() => {
+        const newSocket = io('https://xn-backend.onrender.com', {
+            reconnection: true,
+            reconnectionAttempts: 5,
+            reconnectionDelay: 1000,
+            transports: ['websocket'], // Ensure WebSocket transport is used
+        });
+        setSocket(newSocket);
+        newSocket.on('terminal:data', (data) => {
+            if (data && data.data) {
+                setTerminalOutput((prev) => prev + data.data);
+            }
+        });
+        newSocket.on('file:refresh', (filePath) => {
+            console.log('File changed:', filePath);
+        });
+        return () => {
+            newSocket.disconnect();
+        };
+    }, []);
 
-  
-  const run = () => {
-    const iframe = iframeRef.current;
-    if (iframe) {
-      const html = htmlCode;
-      const css = `<style>${cssCode}</style>`;
-      const js = `<script>${jsCode}</script>`;
-      iframe.srcdoc = html + css + js;
-    }
-  };
+    // Fetch file content
+    useEffect(() => {
+        if (!selectedFile) return;
+        fetch(`https://xn-backend.onrender.com/files/content?path=${encodeURIComponent(selectedFile)}&userId=testuser`)
+            .then((res) => res.json())
+            .then((data) => {
+                if (data && data.content) {
+                    setFileContent(data.content);
+                } else {
+                    console.error('Unexpected response format:', data);
+                }
+            })
+            .catch((error) => console.error('Error fetching file content:', error));
+    }, [selectedFile]);
 
-  useEffect(() => {
-    run(); // Run the code on initial render
-  }, [htmlCode, cssCode, jsCode]); // Dependencies ensure this runs when code changes
+    const handleFileChange = debounce((newContent: string) => {
+        if (!selectedFile || !socket) return;
+        socket.emit('file:change', { path: selectedFile, content: newContent, userId: 'testuser' });
+    }, 500);
 
-  return (
-    <ProtectedRoute>
-    <div className="flex">
-      {/* Editor Section */}
-      <div
-        className={`transition-all duration-500 ${
-          isExpanded ? "w-full" : "w-1/2"
-        }`}
-      >
-        <div className="flex items-center justify-between gap-2 bg-[#1A1919] h-[50px] px-[40px]">
-          <div className="flex items-center gap-2">
-            <div
-              onClick={() => setTab("html")}
-              className={`tab cursor-pointer px-[10px] text-[15px] ${
-                tab === "html" ? "bg-[#444]" : "bg-[#1E1e1e]"
-              }`}
-            >
-              HTML
+    const handleTerminalInput = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter' && terminalInputRef.current) {
+            const inputValue = terminalInputRef.current.value;
+            socket?.emit('terminal:write', inputValue + '\n');
+            setTerminalOutput((prev) => prev + inputValue + '\n');
+            terminalInputRef.current.value = '';
+        }
+    };
+
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <div className="h-screen bg-gray-900 text-white grid grid-cols-[1fr_2fr_1fr]">
+                {/* File Explorer */}
+                <div className="bg-gray-800 p-4 overflow-y-auto border-r border-gray-700">
+                    <h2 className="text-lg font-bold mb-4">File Explorer</h2>
+                    <FileTree tree={fileTree} onSelect={setSelectedFile} />
+                </div>
+
+                {/* File Editor */}
+                <div className="p-4 bg-gray-900 flex flex-col">
+                    <h2 className="text-lg font-bold mb-4">File Editor</h2>
+                    <div className="flex-1 relative">
+                        {selectedFile ? (
+                            <textarea
+                                className="w-full h-full bg-gray-800 text-white border-none p-4 rounded-md outline-none focus:ring-2 focus:ring-blue-500"
+                                value={fileContent}
+                                onChange={(e) => {
+                                    setFileContent(e.target.value);
+                                    handleFileChange(e.target.value);
+                                }}
+                            />
+                        ) : (
+                            <p className="text-gray-500 text-center mt-16">Select a file to edit</p>
+                        )}
+                    </div>
+                </div>
+
+                {/* Terminal */}
+                <div className="p-4 bg-gray-800 flex flex-col">
+                    <h2 className="text-lg font-bold mb-4">Terminal</h2>
+                    <div className="flex-1 bg-gray-900 border border-gray-700 p-4 rounded-md overflow-y-auto">
+                        <pre className="whitespace-pre-wrap">{terminalOutput}</pre>
+                    </div>
+                    <input
+                        type="text"
+                        ref={terminalInputRef}
+                        className="w-full mt-4 bg-gray-800 text-white border-none p-2 rounded-md outline-none focus:ring-2 focus:ring-blue-500"
+                        onKeyDown={handleTerminalInput}
+                        placeholder="Type a command"
+                    />
+                </div>
             </div>
-            <div
-              onClick={() => setTab("css")}
-              className={`tab cursor-pointer px-[10px] text-[15px] ${
-                tab === "css" ? "bg-[#444]" : "bg-[#1E1e1e]"
-              }`}
-            >
-              CSS
-            </div>
-            <div
-              onClick={() => setTab("js")}
-              className={`tab cursor-pointer px-[10px] text-[15px] ${
-                tab === "js" ? "bg-[#444]" : "bg-[#1E1e1e]"
-              }`}
-            >
-              JavaScript
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <i
-              className="text-[20px] cursor-pointer"
-              onClick={() => setIsExpanded(!isExpanded)}
-            >
-              <FaExpandAlt />
-            </i>
-            <i className="text-[20px] cursor-pointer" onClick={changeTheme}>
-              <MdLightMode />
-            </i>
-          </div>
-        </div>
-
-        {tab === "html" && (
-          <Editor
-            onChange={(e) => {
-              setHtmlCode(e|| '');
-            }}
-            height="82vh"
-            theme={isLightMode ? "vs" : "vs-dark"}
-            language="html"
-            value={htmlCode}
-          />
-        )}
-        {tab === "css" && (
-          <Editor
-            onChange={(e) => {
-              setCssCode(e|| '');
-            }}
-            height="82vh"
-            theme={isLightMode ? "vs" : "vs-dark"}
-            language="css"
-            value={cssCode}
-          />
-        )}
-        {tab === "js" && (
-          <Editor
-            onChange={(e) => {
-              setJsCode(e||'');
-            }}
-            height="82vh"
-            theme={isLightMode ? "vs" : "vs-dark"}
-            language="javascript"
-            value={jsCode}
-          />
-        )}
-      </div>
-
-      {/* Output Section */}
-      {!isExpanded && (
-        <iframe
-          className="w-1/2 min-h-[82vh] bg-[#fff] text-black"
-          ref={iframeRef} // Attach the iframe element to the ref
-          title="Output"
-        ></iframe>
-      )}
-    </div>
-    </ProtectedRoute>
-  );
+        </Suspense>
+    );
 };
 
-export default MyEditor;
+export default Page;
