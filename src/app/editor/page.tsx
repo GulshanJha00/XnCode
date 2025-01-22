@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef, Suspense } from 'react';
 import io, { Socket } from 'socket.io-client';
 import { debounce } from 'lodash';
-import FileTree from './FileTree'; // Import FileTree component
+import FileTree from '@/components/Tree'; // Import FileTree component
 
 interface FileTree {
     [key: string]: FileTree | null;
