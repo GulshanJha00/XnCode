@@ -1,8 +1,12 @@
 // FileTree.tsx
 import React, { useState, useEffect } from 'react';
 
+interface FileTree {
+    [key: string]: FileTree | null;
+}
+
 interface FileTreeProps {
-    tree: { [key: string]: any };
+    tree: FileTree;
     onSelect: (path: string) => void;
 }
 
@@ -21,11 +25,11 @@ const FileTree: React.FC<FileTreeProps> = ({ tree, onSelect }) => {
         });
     };
 
-    const renderTree = (node: { [key: string]: any }, basePath = '.') => {
+    const renderTree = (node: FileTree, basePath = '.') => {
         if (!node || typeof node !== 'object') return [];
         return Object.entries(node).map(([key, value]) => {
             const fullPath = `${basePath}/${key}`;
-            const isDir = !!value;
+            const isDir = value !== null;
             return (
                 <div key={fullPath} className="group">
                     <div 
@@ -50,6 +54,7 @@ const FileTree: React.FC<FileTreeProps> = ({ tree, onSelect }) => {
                             {key}
                         </span>
                     </div>
+                    
                     {isDir && expandedPaths.has(fullPath) && key !== 'node_modules' && (
                         <div className="ml-4 border-l border-gray-700">
                             {renderTree(value, fullPath)}

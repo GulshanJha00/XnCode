@@ -2,14 +2,14 @@
 import React, { useEffect, useState, useRef, Suspense } from 'react';
 import io, { Socket } from 'socket.io-client';
 import { debounce } from 'lodash';
-import FileTree from '@/components/Tree'; // Import FileTree component
+import FileTree from '@/components/Tree'; // Adjust the import path as necessary
 
-interface FileTree {
-    [key: string]: FileTree | null;
+interface FileTreeStructure {
+    [key: string]: FileTreeStructure | null;
 }
 
 const Page: React.FC = () => {
-    const [fileTree, setFileTree] = useState<FileTree>({});
+    const [fileTree, setFileTree] = useState<FileTreeStructure>({});
     const [selectedFile, setSelectedFile] = useState<string | null>(null);
     const [fileContent, setFileContent] = useState<string>('');
     const [terminalOutput, setTerminalOutput] = useState<string>('');
@@ -19,6 +19,7 @@ const Page: React.FC = () => {
     // Fetch file tree
     useEffect(() => {
         const userId = 'testuser'; // Use a specific user ID for testing
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         fetch(`https://xn-backend.onrender.com/files?userId=${userId}`)
             .then((res) => res.json())
             .then((data) => {
@@ -38,6 +39,7 @@ const Page: React.FC = () => {
     // Initialize socket
     useEffect(() => {
         const userId = 'testuser'; // Use a specific user ID for testing
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const newSocket = io('https://xn-backend.onrender.com', {
             reconnection: true,
             reconnectionAttempts: 5,
@@ -52,8 +54,24 @@ const Page: React.FC = () => {
             }
         });
 
-        newSocket.on('file:refresh', (filePath) => {
+        newSocket.on('file:refresh', async (filePath) => {
             console.log('File changed:', filePath);
+            // Refetch the file tree
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            fetch(`https://xn-backend.onrender.com/files?userId=${userId}`)
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data && data.tree) {
+                        setFileTree(data.tree);
+                    } else {
+                        console.error('Unexpected response format:', data);
+                        setFileTree({});
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error fetching file tree:', error);
+                    setFileTree({});
+                });
         });
 
         return () => {
@@ -65,6 +83,7 @@ const Page: React.FC = () => {
     useEffect(() => {
         if (!selectedFile) return;
         const userId = 'testuser'; // Use a specific user ID for testing
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         fetch(`https://xn-backend.onrender.com/files/content?path=${encodeURIComponent(selectedFile)}&userId=${userId}`)
             .then((res) => res.json())
             .then((data) => {
